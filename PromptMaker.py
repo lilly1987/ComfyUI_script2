@@ -123,7 +123,7 @@ class PromptMaker:
                         tmp={loras:""}
                         
                     if type(self.char["positive"]) is str:
-                        self.char["positive"]={random.sample(string.printable,20):self.char["positive"]}
+                        self.char["positive"]={ ''.join(random.sample(string.printable,10)) :self.char["positive"]}
                     self.char["positive"].update(tmp)
                 else:
                     self.char["positive"]=loras
@@ -144,10 +144,18 @@ class PromptMaker:
         self.pset("CLIPTextEncodeN","text", tmp)
         #--------------------------------
         
+        
+        nm=vchoice(dget(self.char,"ckpt_name",ckptnames),ckptname)
         self.pset(
             "CheckpointLoaderSimple",
             "ckpt_name",
-            vchoice(dget(self.char,"ckpt_name",ckptnames),ckptname)
+            nm
+            )
+
+        self.pset(
+            "SaveImage",
+            "filename_prefix",
+            nm
             )
 
         #--------------------------------
@@ -158,13 +166,13 @@ class PromptMaker:
             vchoice(dget(self.char,"vae_name",vaenames),vaename)
         )
 
-        
+        print(f"[{ccolor}]self.char : [/{ccolor}]",self.char)
         #--------------------------------
         return self.prompts
         
     #----------------------------
     def __init__(self,char):
-        print(f"[{ccolor}]char : [/{ccolor}]",char)
+        #print(f"[{ccolor}]char : [/{ccolor}]",char)
         #self.char=copy.deepcopy(char)
         self.char=char
         

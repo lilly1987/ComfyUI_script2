@@ -1,8 +1,12 @@
 {
     "positive": {
+        "quality": "{__quality__|__quality_my__|__quality1__},",
         "breasts": "__breasts__,",
         "dress": "{__character_dress__|__dress_my__|},",
-        "acc": "{__acc_my__,|}"
+        "acc": "{__acc_my__,|}",
+        "nsfw": "nsfw, (breastsout, breasts exposure, nipple exposure:1.2),",
+        "body": "slender, nature, curvy,",
+        "off shoulder": "__shoulder__,"
     },
     "negative": {
         "no": "__no2d__"
