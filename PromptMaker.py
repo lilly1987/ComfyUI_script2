@@ -1,4 +1,4 @@
-import os, sys, glob, json, random, time, copy
+import os, sys, glob, json, random, time, copy, string
 
 filename=os.path.splitext(os.path.basename(__file__))[0]
 if __name__ == filename or __name__ =='__main__':
