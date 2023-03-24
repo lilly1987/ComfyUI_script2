@@ -1,0 +1,13 @@
+{
+    "positive": {
+        "breasts": "__breasts__,",
+        "dress": "{__character_dress__|__dress_my__|},",
+        "acc": "{__acc_my__,|}"
+    },
+    "negative": {
+        "no": "__no2d__"
+    },
+    "lora_add": {
+        "hunged_girl": "__hunged_girl1__,"
+    }
+}

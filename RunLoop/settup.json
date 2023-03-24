@@ -1,0 +1,9 @@
+{
+    "ccolor": "bright_yellow",
+    "jsonpath": "./RunLoop/",
+    "ckptloop": 2,
+    "charloop": 2,
+    "perloradic": 0.5,
+    "perckptdic": 0.5,
+    "pervaedic": 0.5
+}
