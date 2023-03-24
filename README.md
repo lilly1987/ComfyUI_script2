@@ -1,0 +1,2 @@
+# ComfyUI_script2
+ 
