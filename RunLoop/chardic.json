@@ -218,5 +218,21 @@
     },
     "my": {
         "positive": "__my__"
+    },
+    "rikoPokemonLora_autumn": {
+        "positive": {
+            "char": "riko_pokemon,"
+        },
+        "lora_name": [
+            "rikoPokemonLora_autumn"
+        ]
+    },
+    "yuelLora_v10": {
+        "positive": {
+            "char": "{yuel\\(origin\\)|yuel\\(dress\\)},"
+        },
+        "lora_name": [
+            "yuelLora_v10"
+        ]
     }
 }

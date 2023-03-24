@@ -88,7 +88,7 @@ class PromptMaker:
         if "lora_name" in self.char:
         
             loras=self.char["lora_name"]
-            print("lora_name" , loras)
+            #print("lora_name" , loras)
             
             if type(loras) is dict:
                 k=random.choice(list(loras.keys()))
@@ -107,8 +107,8 @@ class PromptMaker:
         #--------------------------------        
         if "lora_add" in self.char:
             loras=self.char["lora_add"]
-            print("type(loras)" , type(loras))
-            print("loras" , loras)
+            #print("type(loras)" , type(loras))
+            #print("loras" , loras)
             plst=listf(loras,self.lora_add,True)
             if plst:
                 
@@ -121,15 +121,18 @@ class PromptMaker:
                         tmp={string : "" for string in loras}
                     elif type(loras) is str:
                         tmp={loras:""}
+                        
+                    if type(self.char["positive"]) is str:
+                        self.char["positive"]={random.sample(string.printable,20):self.char["positive"]}
                     self.char["positive"].update(tmp)
                 else:
                     self.char["positive"]=loras
-            print(" self.char\[positive]" ,  self.char["positive"])
+            #print(" self.char\[positive]" ,  self.char["positive"])
         #--------------------------------
         tmp=dget(self.char,"positive",positive)
-        print("tmp1" , tmp)
+        #print("tmp1" , tmp)
         tmp=djoin(tmp) 
-        print("tmp2" , tmp)
+        #print("tmp2" , tmp)
         #print("[bright_yellow]positive : [/bright_yellow]", tmp)
         tmp=wildcards.run(tmp)
         print("[bright_yellow]positive : [/bright_yellow]", tmp)
