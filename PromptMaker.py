@@ -107,16 +107,29 @@ class PromptMaker:
         #--------------------------------        
         if "lora_add" in self.char:
             loras=self.char["lora_add"]
-            print("lora_add" , loras)
+            print("type(loras)" , type(loras))
+            print("loras" , loras)
             plst=listf(loras,self.lora_add,True)
             if plst:
+                
                 if "positive" in self.char:
-                    self.char["positive"].update(loras)
+                    tmp={}
+                    
+                    if type(loras) is dict:
+                        tmp=loras
+                    elif type(loras) is list:
+                        tmp={string : "" for string in loras}
+                    elif type(loras) is str:
+                        tmp={loras:""}
+                    self.char["positive"].update(tmp)
                 else:
                     self.char["positive"]=loras
-                    
+            print(" self.char\[positive]" ,  self.char["positive"])
         #--------------------------------
-        tmp=djoin(dget(self.char,"positive",positive)) 
+        tmp=dget(self.char,"positive",positive)
+        print("tmp1" , tmp)
+        tmp=djoin(tmp) 
+        print("tmp2" , tmp)
         #print("[bright_yellow]positive : [/bright_yellow]", tmp)
         tmp=wildcards.run(tmp)
         print("[bright_yellow]positive : [/bright_yellow]", tmp)

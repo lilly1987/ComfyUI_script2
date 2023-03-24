@@ -36,7 +36,7 @@ def dset(d,k,v):
 def ds_ls_join(dic):
     return djoin(dic)
 def djoin(dic):
-    #print("djoin dic : ", dic)
+    print("djoin dic : ", dic)
     
     tmp=""
     if type(dic) is dict:
@@ -46,11 +46,11 @@ def djoin(dic):
             for k in keylist:
                 if type(dic[k]) is list:
                     tmp+=random.choice(dic[k])
-                elif type(dic) is str:
+                elif type(dic[k]) is str:
                     tmp+=dic[k]
     elif type(dic) is str:
         tmp=dic
-    #print("djoin return : ", tmp)
+    print("djoin return : ", tmp)
     return tmp
     
 def ljoin(list):

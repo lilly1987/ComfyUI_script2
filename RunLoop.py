@@ -29,7 +29,7 @@ settup={
     "perckptdic": 0.5,
     "pervaedic" : 0.5,
 }
-print("jsonpath : ",settup["jsonpath"],style="reset")
+#print("jsonpath : ",settup["jsonpath"],style="reset")
 #----------------------
 loradic={
     #"":""
