@@ -2,7 +2,6 @@
     "positive": {
         "quality": "{__quality__|__quality_my__|__quality1__},",
         "breasts": "__breasts__,",
-
         "dress": "{__character_dress__|__dress_my__|__dress__|__dress_code__|__dress1__},",
         "skirt": "{__skirt__|},",
         "sleeve": "{__sleeve__|},",
@@ -24,14 +23,14 @@
     },
 	"lora_strength": {
 		"hunged_girl" : {     
-		"strength_model_min": 0.5,
-		"strength_model_max": 0.75,
+		"strength_model_min": 0.75,
+		"strength_model_max": 1.00,
 		"strength_clip_min" : 0.75,
 		"strength_clip_max" : 1.00,
 		},		              
 		"gothGals_v10" : {    
-		"strength_model_min": 0.5,
-		"strength_model_max": 0.75,
+		"strength_model_min": 0.75,
+		"strength_model_max": 1.00,
 		"strength_clip_min" : 0.75,
 		"strength_clip_max" : 1.00,
 		},

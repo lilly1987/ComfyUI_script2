@@ -7,8 +7,8 @@
     "perloradic": 0.5,
     "perckptdic": 0.5,
     "pervaedic": 0.5,
-	"strength_model_min":0.5,
-	"strength_model_max":0.75,
-	"strength_clip_min":0.50,
-	"strength_clip_max":0.750,
+	"strength_model_min": 0.75,
+	"strength_model_max": 1.00,
+	"strength_clip_min" : 0.75,
+	"strength_clip_max" : 1.00,
 }

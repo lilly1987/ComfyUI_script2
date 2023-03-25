@@ -147,12 +147,12 @@
         },
         "lora_name": ["atelierAyeshaAyeshaAltugle_v1"]
     },
-    "bannerOfTheMaidNicoletteOudinot_grenadierV10": {
-        "positive": {
-			"char" : "grenadier,",
-        },
-        "lora_name": ["bannerOfTheMaidNicoletteOudinot_grenadierV10"]
-    },
+    #"bannerOfTheMaidNicoletteOudinot_grenadierV10": {
+    #    "positive": {
+	#		"char" : "grenadier,",
+    #    },
+    #    "lora_name": ["bannerOfTheMaidNicoletteOudinot_grenadierV10"]
+    #},
     "rikoPokemonLora_autumn": {
         "positive": {
             "char" : "riko_pokemon,",

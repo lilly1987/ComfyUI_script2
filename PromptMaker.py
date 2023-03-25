@@ -91,24 +91,25 @@ class PromptMaker:
     #----------------------------
     def dupdate(self,update):
         for k in update:
-            print(f"[{ccolor}]k : [/{ccolor}]",k)
+            #print(f"[{ccolor}]k : [/{ccolor}]",k)
             if k in self.char:
-                print(f"if k in self.char", k,   k in self.char)
+                #print(f"if k in self.char", k,   k in self.char)
                 #print(f"[{ccolor}]cfilldic\[{k}] : [/{ccolor}]",cfilldic[k])
                 #print(f"[{ccolor}]cchar\[{k}] : [/{ccolor}]",cchar[k])
                 for j in update[k]:
-                    print(f"for j in update[k]", j, type(self.char[k]))
+                    #print(f"for j in update[k]", j, type(self.char[k]))
                     if j in self.char[k]:
-                         print(f"j in self.char[k]", j in self.char[k],self.char[k])
+                         #print(f"j in self.char[k]", j in self.char[k],self.char[k])
                     #elif type(cchar[k]) is None:
                     #    cchar[k][j]=cfilldic[k][j]
                     #    print(f"[{ccolor}]cfilldic\[{k}]\[{j}] : [/{ccolor}]",cfilldic[k][j])
                     #    print(f"[{ccolor}]cchar\[{k}]\[{j}] : [/{ccolor}]",cchar[k][j])
+                        continue
                     else:
-                        print(f"j in cchar[k]", j in self.char[k],self.char[k])
+                        #print(f"j in cchar[k]", j in self.char[k],self.char[k])
                         self.char[k][j]=update[k][j]
             else:
-                print(f"if k in self.char", k,   k in self.char)
+                #print(f"if k in self.char", k,   k in self.char)
                 self.char[k]=update[k]
         if "lora_strength" in update :
             tmpu=update["lora_strength"]
@@ -146,7 +147,7 @@ class PromptMaker:
 
             elif type(loras) is str:
                 lora=self.lora_add(loras)
-            print("lora" , lora)
+            #print("lora" , lora)
 
         #--------------------------------        
         if "lora_add" in self.char:
@@ -207,12 +208,11 @@ class PromptMaker:
         self.pset("CLIPTextEncodeN","text", tmp)
         #--------------------------------
         
-
-        print(f"[{ccolor}]self.char1 : [/{ccolor}]",self.char)
+        #print(f"[{ccolor}]self.char1 : [/{ccolor}]",self.char)
         nm=dget(self.char,"ckpt_name",ckptnames)
-        print(f"[{ccolor}]nm : [/{ccolor}]",nm ,ckptname)
+        #print(f"[{ccolor}]nm : [/{ccolor}]",nm ,ckptname)
         nm=vchoice(nm,ckptname)
-        print(f"[{ccolor}]nm : [/{ccolor}]",nm)
+        #print(f"[{ccolor}]nm : [/{ccolor}]",nm)
         self.pset(
             "CheckpointLoaderSimple",
             "ckpt_name",
@@ -224,7 +224,7 @@ class PromptMaker:
             "filename_prefix",
             nm
             )
-        print(f"[{ccolor}]self.char2 : [/{ccolor}]",self.char)
+        #print(f"[{ccolor}]self.char2 : [/{ccolor}]",self.char)
         #--------------------------------
 
         self.pset(
@@ -233,7 +233,7 @@ class PromptMaker:
             vchoice(dget(self.char,"vae_name",vaenames),vaename)
         )
 
-        print(f"[{ccolor}]self.char : [/{ccolor}]",self.char)
+        #print(f"[{ccolor}]self.char : [/{ccolor}]",self.char)
         #--------------------------------
         return self.prompts
         

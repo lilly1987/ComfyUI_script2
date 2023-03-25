@@ -77,8 +77,7 @@ try:
     while True:
         
         settup=JsonLoader1(f"{settup['jsonpath']}settup.json")
-        print(f"[{ccolor}]settup : [/{ccolor}]",settup)
-
+        #print(f"[{ccolor}]settup : [/{ccolor}]",settup)
         #JsonLoader(f"{settup['jsonpath']}chardic.json",chardic,True)
         #JsonLoader(f"{settup['jsonpath']}charfill.json",charfill,True)
         #JsonLoader(f"{settup['jsonpath']}ckptdic.json",ckptdic,True)
@@ -119,15 +118,15 @@ try:
             chardic=random.choice(charlistdic)
             char_name=random.choice(list(chardic.keys()))
             filldic=random.choice(filllistdic)
-
+            #print(f"[{ccolor}]filldic : [/{ccolor}]",filldic)
+            
             for charloopnum in range(0,settup["charloop"]):
                 # ----------------
                 console.rule(f" {ckptname} - {char_name} - Loop - {charloopnum+1} / {settup['charloop']} - {ckptloopnum+1} / {settup['ckptloop']} " )
                 #print(f"[{ccolor}]char_name : [/{ccolor}]",char_name)
                 cchar=copy.deepcopy(chardic[char_name])
                 cfilldic=copy.deepcopy(filldic)
-
-                print(f"[{ccolor}]cchar1 : [/{ccolor}]",cchar)
+                #print(f"[{ccolor}]cchar1 : [/{ccolor}]",cchar)
                 cchar["strength_model_min"]=settup["strength_model_min"]
                 cchar["strength_model_max"]=settup["strength_model_max"]
                 cchar["strength_clip_min"]=settup["strength_clip_min"]
@@ -138,9 +137,9 @@ try:
                 # ----------------
                 #print(f"[{ccolor}]ccharfill : [/{ccolor}]",ccharfill)
                 #print(f"[{ccolor}]cchar1 : [/{ccolor}]",cchar)
+                
 
-
-                print(f"[{ccolor}]cchar2 : [/{ccolor}]",cchar)
+                #print(f"[{ccolor}]cchar2 : [/{ccolor}]",cchar)
                 # ----------------
                 if len(loradic) and random.random()<=settup["noloradic"]:
                     if len(loradic) and random.random()<=settup["perloradic"]:
