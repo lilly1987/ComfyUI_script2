@@ -12,15 +12,15 @@ def vchoice(v,t=None,inputkey=False):
         if len(v)>0:
             r=random.choice(v) 
             r=vchoice(r,t,inputkey)
-    if type(v) is dict:
+    elif type(v) is dict:
         if len(v)>0:
             if inputkey:
                 r=random.choice(list(v.keys()))
             else:
                 r=v[random.choice(list(v.keys()))]
                 r=vchoice(r,t,inputkey)
-
-    #print("vchoice r : ", r)
+    elif type(v) is str:
+        r=v
     return r
 
 def dget(d,k,t=None):

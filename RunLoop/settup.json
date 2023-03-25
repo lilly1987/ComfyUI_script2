@@ -3,7 +3,12 @@
     "jsonpath": "./RunLoop/",
     "ckptloop": 2,
     "charloop": 2,
+    "noloradic": 0.25,
     "perloradic": 0.5,
     "perckptdic": 0.5,
-    "pervaedic": 0.5
+    "pervaedic": 0.5,
+	"strength_model_min":0.5,
+	"strength_model_max":0.75,
+	"strength_clip_min":0.50,
+	"strength_clip_max":0.750,
 }

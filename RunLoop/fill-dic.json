@@ -2,17 +2,38 @@
     "positive": {
         "quality": "{__quality__|__quality_my__|__quality1__},",
         "breasts": "__breasts__,",
-        "dress": "{__character_dress__|__dress_my__|},",
+
+        "dress": "{__character_dress__|__dress_my__|__dress__|__dress_code__|__dress1__},",
+        "skirt": "{__skirt__|},",
+        "sleeve": "{__sleeve__|},",
         "acc": "{__acc_my__,|}",
-        "nsfw": "nsfw, (breastsout, breasts exposure, nipple exposure:1.2),",
-        "body": "slender, nature, curvy,",
-        "off shoulder": "__shoulder__,"
+        "nsfw": "nsfw, (breastsout, breasts exposure, nipple exposure,{exposure,|}:1.2), {(sex:1.2)|}",
+		"pregnant":"{(pregnant:1.2),|}",
+        "body": "{slender, nature, curvy|__body__},",
+        #"ear": "{|__ear__},",
+        "off shoulder": "__shoulder__,",
+        "focus": "full body,",
+        "post": "{standing|sitting},",
     },
     "negative": {
-        "no": "__no2d__"
+        "no": "__no2d__",
     },
     "lora_add": {
         "hunged_girl": "__hunged_girl1__,",
         "gothGals_v10": "gothgal, wearing a gothgal outfit,"
-    }
+    },
+	"lora_strength": {
+		"hunged_girl" : {     
+		"strength_model_min": 0.5,
+		"strength_model_max": 0.75,
+		"strength_clip_min" : 0.75,
+		"strength_clip_max" : 1.00,
+		},		              
+		"gothGals_v10" : {    
+		"strength_model_min": 0.5,
+		"strength_model_max": 0.75,
+		"strength_clip_min" : 0.75,
+		"strength_clip_max" : 1.00,
+		},
+	}
 }

@@ -76,8 +76,9 @@ charfill={
 try:
     while True:
         
-        JsonLoader(f"{settup['jsonpath']}settup.json",settup,True)
-        
+        settup=JsonLoader1(f"{settup['jsonpath']}settup.json")
+        print(f"[{ccolor}]settup : [/{ccolor}]",settup)
+
         #JsonLoader(f"{settup['jsonpath']}chardic.json",chardic,True)
         #JsonLoader(f"{settup['jsonpath']}charfill.json",charfill,True)
         #JsonLoader(f"{settup['jsonpath']}ckptdic.json",ckptdic,True)
@@ -119,44 +120,41 @@ try:
             char_name=random.choice(list(chardic.keys()))
             filldic=random.choice(filllistdic)
 
-            
             for charloopnum in range(0,settup["charloop"]):
                 # ----------------
                 console.rule(f" {ckptname} - {char_name} - Loop - {charloopnum+1} / {settup['charloop']} - {ckptloopnum+1} / {settup['ckptloop']} " )
                 #print(f"[{ccolor}]char_name : [/{ccolor}]",char_name)
                 cchar=copy.deepcopy(chardic[char_name])
                 cfilldic=copy.deepcopy(filldic)
+
+                print(f"[{ccolor}]cchar1 : [/{ccolor}]",cchar)
+                cchar["strength_model_min"]=settup["strength_model_min"]
+                cchar["strength_model_max"]=settup["strength_model_max"]
+                cchar["strength_clip_min"]=settup["strength_clip_min"]
+                cchar["strength_clip_max"]=settup["strength_clip_max"]
+                cchar["strength_model"]=random.uniform(settup["strength_model_min"],settup["strength_model_max"])
+                cchar["strength_clip" ]=random.uniform(settup["strength_clip_min" ],settup["strength_clip_max" ])
+
                 # ----------------
                 #print(f"[{ccolor}]ccharfill : [/{ccolor}]",ccharfill)
                 #print(f"[{ccolor}]cchar1 : [/{ccolor}]",cchar)
-                for k in cfilldic:
-                    #print(f"[{ccolor}]k : [/{ccolor}]",k)
-                    if k in cchar:
-                        #print(f"[{ccolor}]cchar\[k] : [/{ccolor}]",cchar[k])
-                        for j in cfilldic[k]:
-                            if j in cchar:
-                                print(f"[{ccolor}]cfilldic\[{k}]\[{j}] : [/{ccolor}]",cfilldic[k][j])
-                                print(f"[{ccolor}]cchar\[{k}]\[{j}] : [/{ccolor}]",cchar[k][j])
-                            else:
-                                cchar[k][j]=cfilldic[k][j]
-                    else:
-                        cchar[k]=cfilldic[k]
-                #print(f"[{ccolor}]cchar2 : [/{ccolor}]",cchar)
-                dset(cchar,"ckpt_name",ckptname)
-                dset(cchar,"vae_name",vaename)
+
+
+                print(f"[{ccolor}]cchar2 : [/{ccolor}]",cchar)
                 # ----------------
-                if len(loradic) and random.random()<=settup["perloradic"]:
-                    tmp=random.choice(loradic)
-                    tmp=list(tmp.keys())
-                    loraname=random.choice(tmp)
-                    dset(cchar,"lora_add",{loraname:tmp[loraname]})
-                else:
-                    tmp=loranames
-                    loraname=random.choice(tmp)
-                    dset(cchar,"lora_add",{loraname:""})
+                if len(loradic) and random.random()<=settup["noloradic"]:
+                    if len(loradic) and random.random()<=settup["perloradic"]:
+                        tmp=random.choice(loradic)
+                        tmp=list(tmp.keys())
+                        loraname=random.choice(tmp)
+                        dset(cchar,"lora_add",{loraname:tmp[loraname]})
+                    else:
+                        tmp=loranames
+                        loraname=random.choice(tmp)
+                        dset(cchar,"lora_add",{loraname:""})
                 # ----------------
                 pm=PromptMaker(cchar)
-                
+                pm.dupdate(cfilldic)
                 prompt=pm.promptGet()
                 print()
                 print(f"[{ccolor}]prompt : [/{ccolor}]",prompt)

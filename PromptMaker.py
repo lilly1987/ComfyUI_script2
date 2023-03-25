@@ -24,6 +24,10 @@ negative={
 ccolor="bright_yellow"
 
 #----------------------------
+
+
+
+#----------------------------
 class PromptMaker:
     
     #----------------------------
@@ -60,7 +64,7 @@ class PromptMaker:
         }]
         
     def lora_add(self, name):
-        if not name in self.loraNums:            
+        if not name in self.loraNods:            
             t=self.LoraLoader(name)
             self.padd(
                 name,
@@ -72,14 +76,52 @@ class PromptMaker:
             self.loraClipLast =self.nodeNums[name]
             self.lora_add_after()
 
-            self.loraNums[name]=name
-        return self.loraNums[name]
+            self.loraNods[name]=t[1]
+        return self.loraNods[name]
         
     def lora_add_after(self):
         self.pset("KSampler"        , "model", [self.loraModelLast,0])
         self.pset("CLIPTextEncodeN" , "clip" , [self.loraClipLast ,1])
         self.pset("CLIPTextEncodeP" , "clip" , [self.loraClipLast ,1])
         
+    def lora_set(self,key,value):
+
+        self.pset(self.loratag[self.c['lora']],key,value)
+            
+    #----------------------------
+    def dupdate(self,update):
+        for k in update:
+            print(f"[{ccolor}]k : [/{ccolor}]",k)
+            if k in self.char:
+                print(f"if k in self.char", k,   k in self.char)
+                #print(f"[{ccolor}]cfilldic\[{k}] : [/{ccolor}]",cfilldic[k])
+                #print(f"[{ccolor}]cchar\[{k}] : [/{ccolor}]",cchar[k])
+                for j in update[k]:
+                    print(f"for j in update[k]", j, type(self.char[k]))
+                    if j in self.char[k]:
+                         print(f"j in self.char[k]", j in self.char[k],self.char[k])
+                    #elif type(cchar[k]) is None:
+                    #    cchar[k][j]=cfilldic[k][j]
+                    #    print(f"[{ccolor}]cfilldic\[{k}]\[{j}] : [/{ccolor}]",cfilldic[k][j])
+                    #    print(f"[{ccolor}]cchar\[{k}]\[{j}] : [/{ccolor}]",cchar[k][j])
+                    else:
+                        print(f"j in cchar[k]", j in self.char[k],self.char[k])
+                        self.char[k][j]=update[k][j]
+            else:
+                print(f"if k in self.char", k,   k in self.char)
+                self.char[k]=update[k]
+        if "lora_strength" in update :
+            tmpu=update["lora_strength"]
+            if "lora_strength" in self.char :
+                tmpc=self.char["lora_strength"]
+                for j in tmpu:
+                    if not j in tmpc:
+                        tmpc[j]=tmpu[j]
+            else:
+                self.char["lora_strength"]=update["lora_strength"]
+            
+        dset(self.char,"ckpt_name",ckptname)
+        dset(self.char,"vae_name",vaename)
     #----------------------------
     def promptGet(self):
     
@@ -92,17 +134,19 @@ class PromptMaker:
             
             if type(loras) is dict:
                 k=random.choice(list(loras.keys()))
-                self.lora_add(k)
+                lora=self.lora_add(k)
+                
                 if "positive" in self.char:
                     self.char["positive"].update(loras)
                 else:
                     self.char["positive"]=loras
 
             elif type(loras) is list:
-                self.lora_add(random.choice(loras))
+                lora=self.lora_add(random.choice(loras))
 
             elif type(loras) is str:
-                self.lora_add(loras)
+                lora=self.lora_add(loras)
+            print("lora" , lora)
 
         #--------------------------------        
         if "lora_add" in self.char:
@@ -128,6 +172,25 @@ class PromptMaker:
                 else:
                     self.char["positive"]=loras
             #print(" self.char\[positive]" ,  self.char["positive"])
+        if "strength_model" in self.char:
+            for lora in self.loraNods:
+                self.loraNods[lora]["strength_model"]=self.char["strength_model"]
+        if "strength_clip" in self.char:
+            for lora in self.loraNods:
+                self.loraNods[lora]["strength_clip"]=self.char["strength_clip"]
+        if "strength_model_min" in self.char and "strength_model_max" in self.char:
+            for lora in self.loraNods:
+                self.loraNods[lora]["strength_model"]=random.uniform(self.char["strength_model_min"],self.char["strength_model_max"])
+        if "strength_clip_min" in self.char and "strength_clip_max" in self.char:        
+            for lora in self.loraNods:                
+                self.loraNods[lora]["strength_clip" ]=random.uniform(self.char["strength_clip_min" ],self.char["strength_clip_max" ])
+                
+        if "lora_strength" in self.char:
+            lora_strength=self.char["lora_strength"]
+            for lora in lora_strength:
+                self.loraNods[lora]["strength_model"]=random.uniform(lora_strength[lora]["strength_model_min"],lora_strength[lora]["strength_model_max"])
+                self.loraNods[lora]["strength_clip" ]=random.uniform(lora_strength[lora]["strength_clip_min" ],lora_strength[lora]["strength_clip_max" ])
+        
         #--------------------------------
         tmp=dget(self.char,"positive",positive)
         #print("tmp1" , tmp)
@@ -144,8 +207,12 @@ class PromptMaker:
         self.pset("CLIPTextEncodeN","text", tmp)
         #--------------------------------
         
-        
-        nm=vchoice(dget(self.char,"ckpt_name",ckptnames),ckptname)
+
+        print(f"[{ccolor}]self.char1 : [/{ccolor}]",self.char)
+        nm=dget(self.char,"ckpt_name",ckptnames)
+        print(f"[{ccolor}]nm : [/{ccolor}]",nm ,ckptname)
+        nm=vchoice(nm,ckptname)
+        print(f"[{ccolor}]nm : [/{ccolor}]",nm)
         self.pset(
             "CheckpointLoaderSimple",
             "ckpt_name",
@@ -157,7 +224,7 @@ class PromptMaker:
             "filename_prefix",
             nm
             )
-
+        print(f"[{ccolor}]self.char2 : [/{ccolor}]",self.char)
         #--------------------------------
 
         self.pset(
@@ -178,7 +245,7 @@ class PromptMaker:
         
         self.prompts={}
         self.nodeNums={}
-        self.loraNums={}
+        self.loraNods={}
         
         self.padd(
             "CheckpointLoaderSimple",
@@ -235,7 +302,7 @@ class PromptMaker:
                 "scheduler": "karras",
                 "seed": random.randint(0, 0xffffffffffffffff ),
                 "steps": random.randint(20, 30 ),
-                "cfg": random.randint( int(5*2) , int(9*2) ) / 2,
+                "cfg": random.randint( int(4*2) , int(8*2) ) / 2,
                 "denoise": random.uniform(0.75,1.0) ,
             }
         )

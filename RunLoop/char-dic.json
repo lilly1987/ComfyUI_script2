@@ -101,12 +101,7 @@
         },
         "lora_name": ["IrisPokemon_v10"]
     },
-    "shalltearBloodfallen_v10": {
-        "positive": {
-            "char" : "shalltear, shalltearcostume, ponytail, ",
-        },
-        "lora_name": ["shalltearBloodfallen_v10"]
-    },
+
     "blackarona_v10": {
         "positive": {
             "char" :  "arona, white hair, ",

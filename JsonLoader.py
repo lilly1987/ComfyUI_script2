@@ -24,6 +24,20 @@ def JsonLoader2(path):
         console.print_exception()
         quit()
         
+
+def JsonLoader1(path):
+    try:
+        print("path : ",path,style="reset")
+        filelist=glob.glob(path)
+        for file in filelist:
+            tmp=JsonLoad(file)
+        return tmp
+    except Exception:
+        print("listdic : ",listdic,style="reset")
+        console.print_exception()
+        quit()
+        
+
 def JsonLoad(full):
     with open(full, 'r', encoding='utf-8') as file:
         text=""
