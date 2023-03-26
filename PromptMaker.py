@@ -34,14 +34,16 @@ class PromptMaker:
     def pget(self,name,input):
         return self.prompts[self.nodeNums[name]]["inputs"][input]
         
-    def pset(self,name,input,value):
-        #print("pset : ",name,input)
+    def pset(self,name,input,value=None):
+
+        #print("pset1 : ",name,input,value)
         if not type(self.prompts[self.nodeNums[name]]["inputs"][input]) is list :
             while type(value) is list:
                 value=vchoice(value)
         self.prompts[self.nodeNums[name]]["inputs"][input] = value
-                
-    def padd(self, nodename,class_type,inputs):
+        #print("pset2 : ",self.prompts)
+
+    def padd(self, nodename,class_type,inputs,func=None):
         n=f"{len(self.nodeNums.keys())}"
         self.nodeNums[nodename]=n
         self.prompts[n]={
@@ -49,6 +51,7 @@ class PromptMaker:
             "inputs":inputs
         }
         #print("padd : ", nodename,class_type,n)
+        self.nodefuncs[nodename]=func
         return n
 
     #----------------------------
@@ -81,8 +84,8 @@ class PromptMaker:
         
     def lora_add_after(self):
         self.pset("KSampler"        , "model", [self.loraModelLast,0])
-        self.pset("CLIPTextEncodeN" , "clip" , [self.loraClipLast ,1])
-        self.pset("CLIPTextEncodeP" , "clip" , [self.loraClipLast ,1])
+        self.pset("positive" , "clip" , [self.loraClipLast ,1])
+        self.pset("negative" , "clip" , [self.loraClipLast ,1])
         
     def lora_set(self,key,value):
 
@@ -121,130 +124,130 @@ class PromptMaker:
             else:
                 self.char["lora_strength"]=update["lora_strength"]
             
-        dset(self.char,"ckpt_name",ckptname)
-        dset(self.char,"vae_name",vaename)
+
     #----------------------------
     def promptGet(self):
-    
-
-        #--------------------------------        
-        if "lora_name" in self.char:
         
-            loras=self.char["lora_name"]
-            #print("lora_name" , loras)
+        print("self.char" , self.char)
+        
+        positiveRandom=False
+        if "positiveRandom" in self.char:
+            positiveRandom=self.char["positiveRandom"]
+
+        #--------------------------------
+        if "batch_size" in self.char:
+            self.pset("ImageSetup","batch_size",self.char["batch_size"])
+        if "height" in self.char:
+            self.pset("ImageSetup","height",self.char["height"])
+        if "width" in self.char:
+            self.pset("ImageSetup","width",self.char["width"])
             
-            if type(loras) is dict:
-                k=random.choice(list(loras.keys()))
-                lora=self.lora_add(k)
-                
-                if "positive" in self.char:
-                    self.char["positive"].update(loras)
-                else:
-                    self.char["positive"]=loras
-
-            elif type(loras) is list:
-                lora=self.lora_add(random.choice(loras))
-
-            elif type(loras) is str:
-                lora=self.lora_add(loras)
-            #print("lora" , lora)
-
-        #--------------------------------        
-        if "lora_add" in self.char:
-            loras=self.char["lora_add"]
-            #print("type(loras)" , type(loras))
-            #print("loras" , loras)
-            plst=listf(loras,self.lora_add,True)
-            if plst:
-                
-                if "positive" in self.char:
-                    tmp={}
-                    
-                    if type(loras) is dict:
-                        tmp=loras
-                    elif type(loras) is list:
-                        tmp={string : "" for string in loras}
-                    elif type(loras) is str:
-                        tmp={loras:""}
-                        
-                    if type(self.char["positive"]) is str:
-                        self.char["positive"]={ ''.join(random.sample(string.printable,10)) :self.char["positive"]}
-                    self.char["positive"].update(tmp)
-                else:
-                    self.char["positive"]=loras
-            #print(" self.char\[positive]" ,  self.char["positive"])
-        if "strength_model" in self.char:
-            for lora in self.loraNods:
-                self.loraNods[lora]["strength_model"]=self.char["strength_model"]
-        if "strength_clip" in self.char:
-            for lora in self.loraNods:
-                self.loraNods[lora]["strength_clip"]=self.char["strength_clip"]
+        #--------------------------------
+        if "denoise_min" in self.char and "denoise_max" in self.char:
+            self.pset("KSampler","denoise",random.uniform(self.char["denoise_min"],self.char["denoise_max"]))
+        #--------------------------------
+        self.pset(
+            "VAELoader",
+            "vae_name", 
+            vchoice(dget(self.char,"vae_name",vaenames),vaename)
+        )
+        #--------------------------------
         if "strength_model_min" in self.char and "strength_model_max" in self.char:
             for lora in self.loraNods:
                 self.loraNods[lora]["strength_model"]=random.uniform(self.char["strength_model_min"],self.char["strength_model_max"])
         if "strength_clip_min" in self.char and "strength_clip_max" in self.char:        
             for lora in self.loraNods:                
                 self.loraNods[lora]["strength_clip" ]=random.uniform(self.char["strength_clip_min" ],self.char["strength_clip_max" ])
+        if "strength_model" in self.char:
+            for lora in self.loraNods:
+                self.loraNods[lora]["strength_model"]=self.char["strength_model"]
+        if "strength_clip" in self.char:
+            for lora in self.loraNods:
+                self.loraNods[lora]["strength_clip"]=self.char["strength_clip"]
                 
-        if "lora_strength" in self.char:
-            lora_strength=self.char["lora_strength"]
-            for lora in lora_strength:
-                self.loraNods[lora]["strength_model"]=random.uniform(lora_strength[lora]["strength_model_min"],lora_strength[lora]["strength_model_max"])
-                self.loraNods[lora]["strength_clip" ]=random.uniform(lora_strength[lora]["strength_clip_min" ],lora_strength[lora]["strength_clip_max" ])
+        inputs={}
+        if "lora_set" in self.char:
+            inputs=self.char["lora_set"]
         
+        keys=list(inputs.keys())
+        random.shuffle(keys)
+        for key in keys:
+            #print(f"[{ccolor}]key : [/{ccolor}]",key)
+            lora=wildcards.run(key)
+            self.lora_add(lora)
+            tmp=inputs[key]
+            if "strength_model_min" in tmp and "strength_model_max" in tmp: 
+                self.pset(lora,"strength_model", random.uniform(tmp["strength_model_min"],tmp["strength_model_max"]))
+                #self.loraNods[lora]["strength_model"]=random.uniform(tmp["strength_model_min"],tmp["strength_model_max"])
+            if "strength_clip_min" in tmp and "strength_clip_max" in tmp: 
+                self.pset(lora,"strength_clip",random.uniform(tmp["strength_clip_min" ],tmp["strength_clip_max" ]))
+                #self.loraNods[lora]["strength_clip" ]=random.uniform(tmp["strength_clip_min" ],tmp["strength_clip_max" ])
+            if "strength_model" in tmp : 
+                self.pset(lora,"strength_model", tmp["strength_model" ])
+                #self.loraNods[lora]["strength_model"]=tmp["strength_model" ]
+            if "strength_clip" in tmp : 
+                self.pset(lora,"strength_clip", tmp["strength_clip" ])
+                #self.loraNods[lora]["strength_clip" ]=tmp["strength_clip" ]
+                
+            if "positive" in tmp : 
+                dset(self.char,"positive",{lora:tmp["positive"]},True)
+            if "negative" in tmp : 
+                dset(self.char,"negative",{lora:tmp["negative"]},True)
+
+                    
+        #--------------------------------
+        if "node_setup" in self.char:
+            dicts=self.char["node_setup"]
+            keys=dicts.keys()
+            for key in keys:
+                values=dicts[key]
+                for v in values:
+                    self.pset(key,v,values[v])
+
         #--------------------------------
         tmp=dget(self.char,"positive",positive)
         #print("tmp1" , tmp)
-        tmp=djoin(tmp) 
+        tmp=djoin(tmp,positiveRandom) 
         #print("tmp2" , tmp)
         #print("[bright_yellow]positive : [/bright_yellow]", tmp)
         tmp=wildcards.run(tmp)
         print("[bright_yellow]positive : [/bright_yellow]", tmp)
-        self.pset("CLIPTextEncodeP","text", tmp)
+        self.pset("positive","text", tmp)
         #--------------------------------
         tmp=djoin(dget(self.char,"negative",negative)) 
         tmp=wildcards.run(tmp)
         print("[bright_yellow]negative : [/bright_yellow]", tmp)
-        self.pset("CLIPTextEncodeN","text", tmp)
+        self.pset("negative","text", tmp)
         #--------------------------------
-        
+        dset(self.char,"ckpt_name",ckptname)
+        dset(self.char,"vae_name",vaename)
         #print(f"[{ccolor}]self.char1 : [/{ccolor}]",self.char)
         nm=dget(self.char,"ckpt_name",ckptnames)
         #print(f"[{ccolor}]nm : [/{ccolor}]",nm ,ckptname)
         nm=vchoice(nm,ckptname)
         #print(f"[{ccolor}]nm : [/{ccolor}]",nm)
-        self.pset(
-            "CheckpointLoaderSimple",
-            "ckpt_name",
-            nm
-            )
-
+        self.pset("CheckpointLoaderSimple","ckpt_name",nm)
+        
         self.pset(
             "SaveImage",
             "filename_prefix",
             nm
             )
-        #print(f"[{ccolor}]self.char2 : [/{ccolor}]",self.char)
-        #--------------------------------
-
-        self.pset(
-            "VAELoader",
-            "vae_name", 
-            vchoice(dget(self.char,"vae_name",vaenames),vaename)
-        )
 
         #print(f"[{ccolor}]self.char : [/{ccolor}]",self.char)
         #--------------------------------
+        print("self.char" , self.char)
         return self.prompts
         
     #----------------------------
     def __init__(self,char):
         #print(f"[{ccolor}]char : [/{ccolor}]",char)
         #self.char=copy.deepcopy(char)
-        self.char=char
+        self.char=copy.deepcopy(char)
         
         self.prompts={}
         self.nodeNums={}
+        self.nodefuncs={}
         self.loraNods={}
         
         self.padd(
@@ -260,7 +263,7 @@ class PromptMaker:
 
         self.padd(
             
-            "CLIPTextEncodeP",
+            "positive",
             "CLIPTextEncodeWildcards",
             {
                 "clip" : [self.loraClipLast,1],
@@ -270,7 +273,7 @@ class PromptMaker:
 
         self.padd(
             
-            "CLIPTextEncodeN",
+            "negative",
             "CLIPTextEncodeWildcards",
             {
                 "clip" : [self.loraClipLast,1],
@@ -280,12 +283,12 @@ class PromptMaker:
 
         self.padd(
             
-            "EmptyLatentImage",
+            "ImageSetup",
             "EmptyLatentImage",
             {
                 "batch_size": 1,
-                "height": 768,
-                "width": 320
+                "height": 512,
+                "width": 512
             }
         )
 
@@ -295,15 +298,17 @@ class PromptMaker:
             "KSampler",
             {
                 "model": [self.loraModelLast,0],
-                "positive": [self.nodeNums["CLIPTextEncodeP"],0],
-                "negative": [self.nodeNums["CLIPTextEncodeN"],0],
-                "latent_image": [self.nodeNums["EmptyLatentImage"],0],
+                "positive": [self.nodeNums["positive"],0],
+                "negative": [self.nodeNums["negative"],0],
+                "latent_image": [self.nodeNums["ImageSetup"],0],
                 "sampler_name": "dpmpp_sde",
                 "scheduler": "karras",
                 "seed": random.randint(0, 0xffffffffffffffff ),
                 "steps": random.randint(20, 30 ),
-                "cfg": random.randint( int(4*2) , int(8*2) ) / 2,
-                "denoise": random.uniform(0.75,1.0) ,
+                "cfg": 7,
+                #"cfg": random.randint( int(4*2) , int(8*2) ) / 2,
+                "denoise": 1 ,
+                #"denoise": random.uniform(0.75,1.0) ,
             }
         )
 

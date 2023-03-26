@@ -27,22 +27,72 @@ def dget(d,k,t=None):
     r=d[k] if k in d else t
     return r
 
-def dset(d,k,v):
-    if k in d:
-        d[k].update(v)
-    else:
-        d[k]=v
+def dset(d,k,v,strtodic=False):
+    #try:
+        if k in d:
+            if type(d[k]) is str:
+                d[k]={d[k]:d[k]}
+            else:
+                d[k].update(v)
+        else:
+            d[k]=v
+    #except Exception:
+    #    print("d : ",d,style="reset")
+    #    print("v : ",v,style="reset")
+    #    print("type d : ",type(d),style="reset")
+    #    print("k : ",k,style="reset")
+    #    print("type(d\[k])  : ",type(d[k]) ,style="reset")
+    #    console.print_exception()
+    #    quit()
+        
+def dupdate(d,k,v,strtodic=False):
+    dset(d,k,v,strtodic)
+
+def deepupdate(d1,d2):
+    for k in d2:
+        if k in d1:
+            if type(d1[k]) is dict and type(d2[k]) is dict:
+                deepupdate(d1[k],d2[k])
+            elif type(d1[k]) is dict and type(d2[k]) is not dict:
+                deepupdate(d1[k],{d2[k]:d2[k]})
+            elif type(d1[k]) is not dict and type(d2[k]) is dict:
+                d1[k]={d1[k]:d2[k]}
+                deepupdate(d1[k],d2[k])
+            elif type(d1[k]) is not dict and type(d2[k]) is not dict:
+                d1[k]=d2[k]
+        else:
+            d1[k]=d2[k]
+
+def deepfill(d1,d2):
+    for k in d2:
+        if k in d1:
+            if type(d1[k]) is dict and type(d2[k]) is dict:
+                deepfill(d1[k],d2[k])
+            elif type(d1[k]) is dict and type(d2[k]) is not dict:
+                deepupdate(d1[k],{d2[k]:d2[k]})
+        else:
+            d1[k]=d2[k]
+
+def dadd(d,k,v):
+    try:
+        d[k]+=v
+    except Exception:
+        print("type d : ",type(d),style="reset")
+        print("d : ",d,style="reset")
+        console.print_exception()
+        quit()
 
 def ds_ls_join(dic):
     return djoin(dic)
-def djoin(dic):
+def djoin(dic,shuffle=False):
     #print("djoin dic : ", dic)
     
     tmp=""
     if type(dic) is dict:
         keylist=list(dic.keys())
         if len(keylist)>0:
-            random.shuffle(keylist)
+            if shuffle:
+                random.shuffle(keylist)
             for k in keylist:
                 if type(dic[k]) is list:
                     tmp+=random.choice(dic[k])

@@ -1,3 +1,4 @@
 
 *.pyc
-RunLoop/backup/**
+RunLoop/
+#RunLoop/**/*.json
