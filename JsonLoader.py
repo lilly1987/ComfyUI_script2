@@ -12,7 +12,7 @@ else:
 
 comment = re.compile(r"#.*")
 
-def JsonLoader2(path,make,dic):
+def JsonLoader2(path,make=None,dic=None):
     listdic=[]
     try:
         folder=os.path.split(path)[0]
@@ -27,9 +27,10 @@ def JsonLoader2(path,make,dic):
                 if len(tmp)>0:
                     listdic+=[tmp]
         else:
-            with open(make, 'w', encoding='utf-8') as file:
-                json.dump(dic, file, sort_keys=False, indent=4)
-            listdic=[dic]
+            if make and dic:
+                with open(make, 'w', encoding='utf-8') as file:
+                    json.dump(dic, file, sort_keys=False, indent=4)
+                listdic=[dic]
         return listdic
     except Exception:
         print("listdic : ",listdic,style="reset")

@@ -185,12 +185,24 @@ try:
             print(f"[{ccolor}]settuplistdic : [/{ccolor}]",settup)
         
         #print(f"[{ccolor}]settup : [/{ccolor}]",settup)
-        
-        charlistdic=JsonLoader2(f"{settup['jsonpath']}char-*.json",f"{settup['jsonpath']}char-sample.json",chardic)
-        filllistdic=JsonLoader2(f"{settup['jsonpath']}fill-*.json",f"{settup['jsonpath']}fill-sample.json",filldic)
-        ckptlistdic=JsonLoader2(f"{settup['jsonpath']}ckpt-*.json",f"{settup['jsonpath']}ckpt-sample.json",ckptdic)
-        vaelistdic=JsonLoader2(f"{settup['jsonpath']}vae-*.json",f"{settup['jsonpath']}vae-sample.json",vaedic)
-        loralistdic=JsonLoader2(f"{settup['jsonpath']}lora-*.json",f"{settup['jsonpath']}lora-sample.json",loradic)
+        def JsonLoaderTmp(nm,dic2):
+            dic=JsonLoader2(f"{settup['jsonpath']}{nm}/*.json")
+            if len(dic)>0:
+                dic+=JsonLoader2(f"{settup['jsonpath']}{nm}-*.json")
+            else:
+                dic+=JsonLoader2(f"{settup['jsonpath']}{nm}-*.json",f"{settup['jsonpath']}{nm}/sample.json",dic2)
+            return dic
+                
+        charlistdic=JsonLoaderTmp("char",chardic)
+        filllistdic=JsonLoaderTmp("fill",filldic)
+        ckptlistdic=JsonLoaderTmp("ckpt",ckptdic)
+        vaelistdic =JsonLoaderTmp("vae",vaedic)
+        loralistdic=JsonLoaderTmp("lora",loradic)
+        #filllistdic=JsonLoader2(f"{settup['jsonpath']}fill/*.json")
+        #filllistdic+=JsonLoader2(f"{settup['jsonpath']}fill-*.json",f"{settup['jsonpath']}fill-sample.json",filldic)
+        #ckptlistdic=JsonLoader2(f"{settup['jsonpath']}ckpt-*.json",f"{settup['jsonpath']}ckpt-sample.json",ckptdic)
+        #vaelistdic=JsonLoader2(f"{settup['jsonpath']}vae-*.json",f"{settup['jsonpath']}vae-sample.json",vaedic)
+        #loralistdic=JsonLoader2(f"{settup['jsonpath']}lora-*.json",f"{settup['jsonpath']}lora-sample.json",loradic)
         
         if ckptloopnum <= 0:
             if len(ckptlistdic) and random.random()<=settup["perckptdic"]:
