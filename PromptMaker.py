@@ -168,7 +168,7 @@ class PromptMaker:
         #--------------------------------
         if "lora_name" in self.char:
             tmp=self.char["lora_name"]
-            self.lora_add(vchoice(tmp))
+            self.lora_add(vchoice(tmp,None,True))
         #--------------------------------
         inputs={}
         if "lora_set" in self.char:
