@@ -37,7 +37,7 @@ settup={
 		"strength_clip_max" : 1.00,
 		#"strength_model": 1.00,
 		#"strength_clip" : 1.00,
-	}
+	},
 }
 
 #print("jsonpath : ",settup["jsonpath"],style="reset")
@@ -159,6 +159,14 @@ filldic={
 	"strength_clip_max" : 1.00,
     "strength_model": 1.00,
     "strength_clip" : 1.00,
+	"char_lora_set" :{
+		"strength_model_min": 0.875,
+		"strength_model_max": 1.00,
+		"strength_clip_min" : 0.875,
+		"strength_clip_max" : 1.00,
+		#"strength_model": 1.00,
+		#"strength_clip" : 1.00,
+	},
 }
 #----------------------------
 ckptloopnum=0
@@ -168,14 +176,15 @@ try:
         
         settuplistdic=JsonLoader2(f"{settup['jsonpath']}settup.json",f"{settup['jsonpath']}settup.json",settup)
 
-        print(f"[{ccolor}]settuplistdic : [/{ccolor}]",settuplistdic)
-        print(f"[{ccolor}]settup : [/{ccolor}]",settup)
+        #print(f"[{ccolor}]settuplistdic : [/{ccolor}]",settuplistdic)
+        #print(f"[{ccolor}]settup : [/{ccolor}]",settup)
         if len(settuplistdic) :
             #key=random.choice(list(settuplistdic.keys()))
             #settup.update(settuplistdic[key])
             settup.update(settuplistdic[0])
+            print(f"[{ccolor}]settuplistdic : [/{ccolor}]",settup)
         
-        print(f"[{ccolor}]settup : [/{ccolor}]",settup)
+        #print(f"[{ccolor}]settup : [/{ccolor}]",settup)
         
         charlistdic=JsonLoader2(f"{settup['jsonpath']}char-*.json",f"{settup['jsonpath']}char-sample.json",chardic)
         filllistdic=JsonLoader2(f"{settup['jsonpath']}fill-*.json",f"{settup['jsonpath']}fill-sample.json",filldic)
@@ -185,6 +194,7 @@ try:
         
         if ckptloopnum <= 0:
             if len(ckptlistdic) and random.random()<=settup["perckptdic"]:
+                print(f"[{ccolor}]settup perckptdic[/{ccolor}]")
                 tmp=list(random.choice(ckptlistdic).keys())
             else:
                 tmp=ckptnames
@@ -195,6 +205,7 @@ try:
         ckptloopnum-=1
         
         if len(vaelistdic) and random.random()<=settup["pervaedic"]:
+            print(f"[{ccolor}]settup pervaedic[/{ccolor}]")
             tmp=list(random.choice(vaelistdic).keys())
         else:
             tmp=vaenames
@@ -202,6 +213,7 @@ try:
         print(f"[{ccolor}]vaename : [/{ccolor}]",vaename)
         
         if len(loralistdic) and random.random()<=settup["perloradic"]:
+            print(f"[{ccolor}]settup perloradic[/{ccolor}]")
             tmp=list(random.choice(loralistdic).keys())
         else:
             tmp=loranames
@@ -212,6 +224,7 @@ try:
             chardic=random.choice(charlistdic)
             char_name=random.choice(list(chardic.keys()))
             charloopnum = settup["charloop"]
+            print(f"[{ccolor}]char_name change [/{ccolor}]",char_name)
         charloopnum-=1
                 # ----------------
         console.rule(f" {ckptname} - {ckptloopnum+1} / {settup['ckptloop']} " )
@@ -222,13 +235,16 @@ try:
         tmpdic={}
         tmpdic["ckpt_name"]=ckptname
         tmpdic["vae_name"]=vaename
+        # ----------------
         if len(loralistdic) and random.random()>=settup["noloradic"]:
+            print(f"[{ccolor}]noloradic pass[/{ccolor}]")
             tmpdic["lora_set"]={}
             if "random_lora_set" in settup:
                 tmpdic["lora_set"][loraname]=settup["random_lora_set"]
             else:
                 tmpdic["lora_set"][loraname]={}
                 
+        # ----------------
         #tmpdic.update(settup)
         #tmpdic.update(filldic)
         #print(f"[{ccolor}]tmpdic1 : [/{ccolor}]",tmpdic)
@@ -237,7 +253,8 @@ try:
         deepfill(tmpdic,filldic)
         #tmpdic.update(chardic[char_name])
         #print(f"[{ccolor}]tmpdic3 : [/{ccolor}]",tmpdic)
-
+        # ----------------
+        
         # ----------------
         pm=PromptMaker(tmpdic)
         prompt=pm.promptGet()

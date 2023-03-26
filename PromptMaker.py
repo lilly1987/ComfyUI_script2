@@ -143,7 +143,7 @@ class PromptMaker:
 
     #----------------------------
     def promptGet(self):
-        print(f"[{ccolor}]self.char befor : [/{ccolor}]",self.char)
+        #print(f"[{ccolor}]self.char befor : [/{ccolor}]",self.char)
         
         positiveRandom=False
         if "positiveRandom" in self.char:
@@ -181,21 +181,28 @@ class PromptMaker:
             if type(tmp) is not dict:
                 print(f"[red]'{key}' value not dict : [/red]",tmp)
                 continue
-            if "strength_model" in tmp : 
-                self.pset(lora,"strength_model", tmp["strength_model" ])
-                #self.loraNods[lora]["strength_model"]=tmp["strength_model" ]
-            elif "strength_model_min" in tmp and "strength_model_max" in tmp: 
-                self.pset(lora,"strength_model", random.uniform(tmp["strength_model_min"],tmp["strength_model_max"]))
-                
-            if "strength_clip" in tmp : 
-                self.pset(lora,"strength_clip", tmp["strength_clip" ])
-            elif "strength_clip_min" in tmp and "strength_clip_max" in tmp: 
-                self.pset(lora,"strength_clip",random.uniform(tmp["strength_clip_min" ],tmp["strength_clip_max" ]))
                 
             if "positive" in tmp : 
                 dset(self.char,"positive",{lora:tmp["positive"]},True)
             if "negative" in tmp : 
                 dset(self.char,"negative",{lora:tmp["negative"]},True)
+                
+            if "char_lora_set" in tmp and "char_lora_set" in self.char :
+                strength=self.char["char_lora_set"]
+            else:
+                strength=tmp
+                
+            if "strength_model" in strength : 
+                self.pset(lora,"strength_model", strength["strength_model" ])
+            elif "strength_model_min" in strength and "strength_model_max" in strength: 
+                self.pset(lora,"strength_model", random.uniform(strength["strength_model_min"],strength["strength_model_max"]))
+
+            if "strength_clip" in strength : 
+                self.pset(lora,"strength_clip", strength["strength_clip" ])
+            elif "strength_clip_min" in strength and "strength_clip_max" in strength: 
+                self.pset(lora,"strength_clip",random.uniform(strength["strength_clip_min" ],strength["strength_clip_max" ]))
+                
+
 
                     
         #--------------------------------
