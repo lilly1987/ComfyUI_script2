@@ -203,6 +203,8 @@ try:
 
             ckptloopnum = settup["ckptloop"]
         ckptloopnum-=1
+        console.rule(f" {ckptname} - {ckptloopnum+1} / {settup['ckptloop']} " )
+        
         
         if len(vaelistdic) and random.random()<=settup["pervaedic"]:
             print(f"[{ccolor}]settup pervaedic[/{ccolor}]")
@@ -226,10 +228,7 @@ try:
             charloopnum = settup["charloop"]
             print(f"[{ccolor}]char_name change [/{ccolor}]",char_name)
         charloopnum-=1
-                # ----------------
-        console.rule(f" {ckptname} - {ckptloopnum+1} / {settup['ckptloop']} " )
         console.rule(f" {char_name} - {charloopnum+1} / {settup['charloop']} " )
-        #print(f"[{ccolor}]char_name : [/{ccolor}]",char_name)
         # ----------------
         filldic=random.choice(filllistdic)
         tmpdic={}
