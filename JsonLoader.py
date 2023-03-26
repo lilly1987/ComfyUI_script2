@@ -51,6 +51,7 @@ def JsonLoader1(path):
         
 def JsonLoad(full):
     try:
+        text=""
         with open(full, 'r', encoding='utf-8') as file:
             text=file.read()
             #lines = file.readlines()
@@ -66,6 +67,7 @@ def JsonLoad(full):
 
             return tmp
     except Exception:
+        print("text : ",text,style="reset")
         print("full : ",full,style="reset")
         console.print_exception()
         quit()

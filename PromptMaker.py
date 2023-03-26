@@ -165,6 +165,11 @@ class PromptMaker:
             for lora in self.loraNods:
                 self.loraNods[lora]["strength_clip"]=self.char["strength_clip"]
                 
+        #--------------------------------
+        if "lora_name" in self.char:
+            tmp=self.char["lora_name"]
+            self.lora_add(vchoice(tmp))
+        #--------------------------------
         inputs={}
         if "lora_set" in self.char:
             inputs=self.char["lora_set"]
