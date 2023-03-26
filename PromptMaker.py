@@ -142,6 +142,36 @@ class PromptMaker:
             
 
     #----------------------------
+    def lora_add_set(self,loraname,dic):
+        lora=wildcards.run(loraname)
+        self.lora_add(lora)
+        tmp=dic
+        #print(f"[{ccolor}]tmp : [/{ccolor}]",tmp)
+        if type(tmp) is not dict:
+            print(f"[red]'{key}' value not dict : [/red]",tmp)
+            return False
+            
+        if "positive" in tmp : 
+            dset(self.char,"positive",{lora:tmp["positive"]},True)
+        if "negative" in tmp : 
+            dset(self.char,"negative",{lora:tmp["negative"]},True)
+            
+        if "char_lora_set" in tmp and "char_lora_set" in self.char :
+            strength=self.char["char_lora_set"]
+        else:
+            strength=tmp
+            
+        if "strength_model" in strength : 
+            self.pset(lora,"strength_model", strength["strength_model" ])
+        elif "strength_model_min" in strength and "strength_model_max" in strength: 
+            self.pset(lora,"strength_model", random.uniform(strength["strength_model_min"],strength["strength_model_max"]))
+
+        if "strength_clip" in strength : 
+            self.pset(lora,"strength_clip", strength["strength_clip" ])
+        elif "strength_clip_min" in strength and "strength_clip_max" in strength: 
+            self.pset(lora,"strength_clip",random.uniform(strength["strength_clip_min" ],strength["strength_clip_max" ]))
+        return True
+    #----------------------------
     def promptGet(self):
         #print(f"[{ccolor}]self.char befor : [/{ccolor}]",self.char)
         
@@ -167,44 +197,25 @@ class PromptMaker:
             self.lora_add(vchoice(tmp,None,True))
         #--------------------------------
         inputs={}
+        if "lora_one" in self.char:
+            inputs=self.char["lora_one"]
+        
+        keys=list(inputs.keys())
+        if len(keys)>0:
+            key=random.choice(keys)
+            self.lora_add_set(key,inputs[key])
+        
+        #--------------------------------
+        inputs={}
         if "lora_set" in self.char:
             inputs=self.char["lora_set"]
         
         keys=list(inputs.keys())
-        random.shuffle(keys)
-        for key in keys:
-            #print(f"[{ccolor}]key : [/{ccolor}]",key)
-            lora=wildcards.run(key)
-            self.lora_add(lora)
-            tmp=inputs[key]            
-            #print(f"[{ccolor}]tmp : [/{ccolor}]",tmp)
-            if type(tmp) is not dict:
-                print(f"[red]'{key}' value not dict : [/red]",tmp)
-                continue
-                
-            if "positive" in tmp : 
-                dset(self.char,"positive",{lora:tmp["positive"]},True)
-            if "negative" in tmp : 
-                dset(self.char,"negative",{lora:tmp["negative"]},True)
-                
-            if "char_lora_set" in tmp and "char_lora_set" in self.char :
-                strength=self.char["char_lora_set"]
-            else:
-                strength=tmp
-                
-            if "strength_model" in strength : 
-                self.pset(lora,"strength_model", strength["strength_model" ])
-            elif "strength_model_min" in strength and "strength_model_max" in strength: 
-                self.pset(lora,"strength_model", random.uniform(strength["strength_model_min"],strength["strength_model_max"]))
+        if len(keys)>0:
+            random.shuffle(keys)
+            for key in keys:
+                self.lora_add_set(key,inputs[key])
 
-            if "strength_clip" in strength : 
-                self.pset(lora,"strength_clip", strength["strength_clip" ])
-            elif "strength_clip_min" in strength and "strength_clip_max" in strength: 
-                self.pset(lora,"strength_clip",random.uniform(strength["strength_clip_min" ],strength["strength_clip_max" ]))
-                
-
-
-                    
         #--------------------------------
         if "node_setup" in self.char:
             dicts=self.char["node_setup"]
