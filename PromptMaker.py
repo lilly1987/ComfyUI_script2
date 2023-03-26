@@ -143,14 +143,26 @@ class PromptMaker:
 
     #----------------------------
     def lora_add_set(self,loraname,dic):
-        lora=wildcards.run(loraname)
-        self.lora_add(lora)
+        
         tmp=dic
-        #print(f"[{ccolor}]tmp : [/{ccolor}]",tmp)
         if type(tmp) is not dict:
-            print(f"[red]'{key}' value not dict : [/red]",tmp)
+            print(f"[red]'{loraname}' value not dict : [/red]",tmp)
             return False
             
+        if "per this" in tmp : 
+        #    print(f"[{ccolor}]'{loraname}' per this : [/{ccolor}]",tmp["per this"])
+            if random.random()<=tmp["per this"]: 
+        #        print(f"[{ccolor}]'{loraname}' skip : [/{ccolor}]")
+                return False
+        #    else:
+        #        print(f"[{ccolor}]'{loraname}' run : [/{ccolor}]")
+        #else:
+        #    print(f"[{ccolor}]'{loraname}' per no : [/{ccolor}]")
+            
+        lora=wildcards.run(loraname)
+        self.lora_add(lora)
+        #print(f"[{ccolor}]tmp : [/{ccolor}]",tmp)
+        
         if "positive" in tmp : 
             dset(self.char,"positive",{lora:tmp["positive"]},True)
         if "negative" in tmp : 
