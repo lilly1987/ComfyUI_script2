@@ -56,18 +56,34 @@ class PromptMaker:
 
     #----------------------------
     def LoraLoader(self,name):
+    
+        if "strength_model" in self.char:
+            strength_model=self.char["strength_model"]
+        elif "strength_model_min" in self.char and "strength_model_max" in self.char:
+            strength_model=random.uniform(self.char["strength_model_min"],self.char["strength_model_max"])
+        else:
+            strength_model=1
+            
+        if "strength_clip" in self.char:
+            strength_clip=self.char["strength_clip"]
+        elif "strength_clip_min" in self.char and "strength_clip_max" in self.char:
+            strength_clip=random.uniform(self.char["strength_clip_min" ],self.char["strength_clip_max" ])
+        else:
+            strength_clip=1
+            
         return [
         "LoraLoaderText",
         {
             "model" : [self.loraModelLast,0],
             "clip"  : [self.loraClipLast ,1],
             "lora_name": name,
-            "strength_model": random.uniform(0.5,1.0),
-            "strength_clip" : random.uniform(0.5,1.0),
+            "strength_model": strength_model,
+            "strength_clip" : strength_clip,
         }]
         
     def lora_add(self, name):
         if not name in self.loraNods:            
+        
             t=self.LoraLoader(name)
             self.padd(
                 name,
@@ -127,8 +143,7 @@ class PromptMaker:
 
     #----------------------------
     def promptGet(self):
-        
-        print("self.char" , self.char)
+        print(f"[{ccolor}]self.char befor : [/{ccolor}]",self.char)
         
         positiveRandom=False
         if "positiveRandom" in self.char:
@@ -145,26 +160,7 @@ class PromptMaker:
         #--------------------------------
         if "denoise_min" in self.char and "denoise_max" in self.char:
             self.pset("KSampler","denoise",random.uniform(self.char["denoise_min"],self.char["denoise_max"]))
-        #--------------------------------
-        self.pset(
-            "VAELoader",
-            "vae_name", 
-            vchoice(dget(self.char,"vae_name",vaenames),vaename)
-        )
-        #--------------------------------
-        if "strength_model_min" in self.char and "strength_model_max" in self.char:
-            for lora in self.loraNods:
-                self.loraNods[lora]["strength_model"]=random.uniform(self.char["strength_model_min"],self.char["strength_model_max"])
-        if "strength_clip_min" in self.char and "strength_clip_max" in self.char:        
-            for lora in self.loraNods:                
-                self.loraNods[lora]["strength_clip" ]=random.uniform(self.char["strength_clip_min" ],self.char["strength_clip_max" ])
-        if "strength_model" in self.char:
-            for lora in self.loraNods:
-                self.loraNods[lora]["strength_model"]=self.char["strength_model"]
-        if "strength_clip" in self.char:
-            for lora in self.loraNods:
-                self.loraNods[lora]["strength_clip"]=self.char["strength_clip"]
-                
+
         #--------------------------------
         if "lora_name" in self.char:
             tmp=self.char["lora_name"]
@@ -180,19 +176,21 @@ class PromptMaker:
             #print(f"[{ccolor}]key : [/{ccolor}]",key)
             lora=wildcards.run(key)
             self.lora_add(lora)
-            tmp=inputs[key]
-            if "strength_model_min" in tmp and "strength_model_max" in tmp: 
-                self.pset(lora,"strength_model", random.uniform(tmp["strength_model_min"],tmp["strength_model_max"]))
-                #self.loraNods[lora]["strength_model"]=random.uniform(tmp["strength_model_min"],tmp["strength_model_max"])
-            if "strength_clip_min" in tmp and "strength_clip_max" in tmp: 
-                self.pset(lora,"strength_clip",random.uniform(tmp["strength_clip_min" ],tmp["strength_clip_max" ]))
-                #self.loraNods[lora]["strength_clip" ]=random.uniform(tmp["strength_clip_min" ],tmp["strength_clip_max" ])
+            tmp=inputs[key]            
+            #print(f"[{ccolor}]tmp : [/{ccolor}]",tmp)
+            if type(tmp) is not dict:
+                print(f"[red]'{key}' value not dict : [/red]",tmp)
+                continue
             if "strength_model" in tmp : 
                 self.pset(lora,"strength_model", tmp["strength_model" ])
                 #self.loraNods[lora]["strength_model"]=tmp["strength_model" ]
+            elif "strength_model_min" in tmp and "strength_model_max" in tmp: 
+                self.pset(lora,"strength_model", random.uniform(tmp["strength_model_min"],tmp["strength_model_max"]))
+                
             if "strength_clip" in tmp : 
                 self.pset(lora,"strength_clip", tmp["strength_clip" ])
-                #self.loraNods[lora]["strength_clip" ]=tmp["strength_clip" ]
+            elif "strength_clip_min" in tmp and "strength_clip_max" in tmp: 
+                self.pset(lora,"strength_clip",random.uniform(tmp["strength_clip_min" ],tmp["strength_clip_max" ]))
                 
             if "positive" in tmp : 
                 dset(self.char,"positive",{lora:tmp["positive"]},True)
@@ -224,24 +222,24 @@ class PromptMaker:
         print("[bright_yellow]negative : [/bright_yellow]", tmp)
         self.pset("negative","text", tmp)
         #--------------------------------
-        dset(self.char,"ckpt_name",ckptname)
-        dset(self.char,"vae_name",vaename)
+        nm=dget(self.char,"vae_name",vaenames)
+        #print(f"[{ccolor}]nm : [/{ccolor}]",nm ,ckptname)
+        nm=vchoice(nm,vaename)
+        #print(f"[{ccolor}]nm : [/{ccolor}]",nm)
+        self.pset("VAELoader","vae_name",nm)
+        #--------------------------------
+        #dset(self.char,"ckpt_name",ckptname)
+        #dset(self.char,"vae_name",vaename)
         #print(f"[{ccolor}]self.char1 : [/{ccolor}]",self.char)
         nm=dget(self.char,"ckpt_name",ckptnames)
         #print(f"[{ccolor}]nm : [/{ccolor}]",nm ,ckptname)
         nm=vchoice(nm,ckptname)
         #print(f"[{ccolor}]nm : [/{ccolor}]",nm)
         self.pset("CheckpointLoaderSimple","ckpt_name",nm)
-        
-        self.pset(
-            "SaveImage",
-            "filename_prefix",
-            nm
-            )
-
+        self.pset("SaveImage","filename_prefix",nm)
         #print(f"[{ccolor}]self.char : [/{ccolor}]",self.char)
         #--------------------------------
-        print("self.char" , self.char)
+        print(f"[{ccolor}]self.char after : [/{ccolor}]",self.char)
         return self.prompts
         
     #----------------------------

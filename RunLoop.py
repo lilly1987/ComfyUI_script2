@@ -30,6 +30,14 @@ settup={
     "pervaedic": 0.50,
 	
 	"positiveRandom" : False,
+	"random_lora_set" :{
+		"strength_model_min": 0.75,
+		"strength_model_max": 1.00,
+		"strength_clip_min" : 0.75,
+		"strength_clip_max" : 1.00,
+		#"strength_model": 1.00,
+		#"strength_clip" : 1.00,
+	}
 }
 
 #print("jsonpath : ",settup["jsonpath"],style="reset")
@@ -149,6 +157,8 @@ filldic={
 	"strength_model_max": 1.00,
 	"strength_clip_min" : 0.75,
 	"strength_clip_max" : 1.00,
+    "strength_model": 1.00,
+    "strength_clip" : 1.00,
 }
 #----------------------------
 ckptloopnum=0
@@ -213,7 +223,12 @@ try:
         tmpdic["ckpt_name"]=ckptname
         tmpdic["vae_name"]=vaename
         if len(loralistdic) and random.random()>=settup["noloradic"]:
-            tmpdic["lora_set"]={loraname:""}
+            tmpdic["lora_set"]={}
+            if "random_lora_set" in settup:
+                tmpdic["lora_set"][loraname]=settup["random_lora_set"]
+            else:
+                tmpdic["lora_set"][loraname]={}
+                
         #tmpdic.update(settup)
         #tmpdic.update(filldic)
         #print(f"[{ccolor}]tmpdic1 : [/{ccolor}]",tmpdic)
