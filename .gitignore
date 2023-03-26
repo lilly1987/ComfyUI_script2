@@ -1,4 +1,5 @@
 
 *.pyc
 RunLoop/
+backup/
 #RunLoop/**/*.json
