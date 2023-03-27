@@ -151,11 +151,12 @@ class PromptMaker:
             
         if "per this" in tmp : 
         #    print(f"[{ccolor}]'{loraname}' per this : [/{ccolor}]",tmp["per this"])
-            if random.random()<=tmp["per this"]: 
-        #        print(f"[{ccolor}]'{loraname}' skip : [/{ccolor}]")
+            r=random.random()
+            if r>=tmp["per this"]: 
+                print(f"[{ccolor}]'{loraname}' skip : [/{ccolor}]",r)
                 return False
-        #    else:
-        #        print(f"[{ccolor}]'{loraname}' run : [/{ccolor}]")
+            else:
+                print(f"[{ccolor}]'{loraname}' run : [/{ccolor}]",r)
         #else:
         #    print(f"[{ccolor}]'{loraname}' per no : [/{ccolor}]")
             
