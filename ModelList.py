@@ -10,7 +10,7 @@ else:
 #----------------------
 ckptspath=os.path.join( 
     os.path.dirname(__file__),
-    "..\\..\\models\\checkpoints\\*fp16.safetensors"
+    "..\\..\\models\\checkpoints\\*.safetensors"
 )    
 ckptfullpaths=glob.glob(ckptspath)
 ckptnames=[os.path.basename(ckptfullpath) for ckptfullpath in ckptfullpaths]
