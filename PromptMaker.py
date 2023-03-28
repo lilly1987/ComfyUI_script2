@@ -262,7 +262,7 @@ class PromptMaker:
         #dset(self.char,"ckpt_name",ckptname)
         #dset(self.char,"vae_name",vaename)
         if "ckpt_path" in self.char:
-            (name,fullpath)=filenameget(self.char["ckpt_path"])
+            (name,fullpath)=filenameget(lget(self.char["ckpt_path"]))
             #print(f"[{ccolor}]name,fullpath2 : [/{ccolor}]",name,fullpath)
         else:
             name=fullpath=dget(self.char,"ckpt_name",ckptnames)

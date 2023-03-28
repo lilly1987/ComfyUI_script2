@@ -23,6 +23,19 @@ def vchoice(v,t=None,inputkey=False):
         r=v
     return r
 
+def lget(l,inputkey=False):
+    if type(l) is dict:
+        k=random.choice(list(l.keys()))
+        if inputkey:
+            r=k
+        else:
+            r=l[k]
+    if type(l) is list:
+        r=random.choice(l)
+    elif type(l) is str:
+        r=l
+    return r
+
 def dget(d,k,t=None):
     r=d[k] if k in d else t
     return r
