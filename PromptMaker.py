@@ -230,6 +230,23 @@ class PromptMaker:
                 self.lora_add_set(key,inputs[key])
 
         #--------------------------------
+        if "lora_unique" in self.char:
+            lora_unique_sets=self.char["lora_unique"]
+            for lora_unique_set in lora_unique_sets:
+                lora_unique_dics=lora_unique_sets[lora_unique_set]
+                if "per this" in lora_unique_dics : 
+                #    print(f"[{ccolor}]'{loraname}' per this : [/{ccolor}]",tmp["per this"])
+                    r=random.random()
+                    if r>=lora_unique_dics["per this"]: 
+                        print(f"[{ccolor}]'{lora_unique_set}' skip : [/{ccolor}]",r)
+                        continue
+                    else:
+                        print(f"[{ccolor}]'{lora_unique_set}' run : [/{ccolor}]",r)
+                        del lora_unique_dics["per this"]
+                key=random.choice(list(lora_unique_dics.keys()))
+                self.lora_add_set(key,lora_unique_dics[key])
+                
+        #--------------------------------
         if "node_setup" in self.char:
             dicts=self.char["node_setup"]
             keys=dicts.keys()
