@@ -117,7 +117,31 @@ filldic={
         #"post": "{standing|sitting},",
     },
     "negative": "__no2d__",
-
+    },
+	"lora_unique" : {
+		"nsfw" : {
+            "per this" : 0.05,
+			"koonago_V1" : {     
+				"positive": "koonago,minigirl,1boy, pov, penis hug, penis,",
+				"per this" : 0.05,
+			},		              
+			"conceptCowgirl_v10" : {     
+				"positive": "__Cowgirl1__,",
+				"per this" : 0.05,
+			},
+        },		              
+		"dress" : {
+			"per this" : 0.50,
+			"thaiUniversity_v10" : {    
+				"positive": "white shirt short sleeve, {black pencil short skirt|black tight skirt},",
+				#"per this" : 0.20,
+			},
+			"gothGals_v10" : {    
+				"positive": "gothgal, wearing a gothgal outfit,",
+				#"per this" : 0.20,
+			},
+		},
+    },		              
 	"lora_set": {
 		loraname : {     
 			"strength_model_min": 0.5, 
