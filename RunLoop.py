@@ -117,7 +117,6 @@ filldic={
         #"post": "{standing|sitting},",
     },
     "negative": "__no2d__",
-    },
 	"lora_unique" : {
 		"nsfw" : {
             "per this" : 0.05,
