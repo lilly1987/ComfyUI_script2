@@ -261,13 +261,18 @@ class PromptMaker:
         #--------------------------------
         #dset(self.char,"ckpt_name",ckptname)
         #dset(self.char,"vae_name",vaename)
-        #print(f"[{ccolor}]self.char1 : [/{ccolor}]",self.char)
-        nm=dget(self.char,"ckpt_name",ckptnames)
-        #print(f"[{ccolor}]nm : [/{ccolor}]",nm ,ckptname)
-        nm=vchoice(nm,ckptname)
+        if "ckpt_path" in self.char:
+            (name,fullpath)=filenameget(self.char["ckpt_path"])
+            #print(f"[{ccolor}]name,fullpath2 : [/{ccolor}]",name,fullpath)
+        else:
+            name=fullpath=dget(self.char,"ckpt_name",ckptnames)
+            #print(f"[{ccolor}]nm : [/{ccolor}]",nm ,ckptname)
+            name=fullpath=vchoice(name,ckptname)
+            #print(f"[{ccolor}]name,fullpath1 : [/{ccolor}]",name,fullpath)
+        #print(f"[{ccolor}]name,fullpath : [/{ccolor}]",name,fullpath)
         #print(f"[{ccolor}]nm : [/{ccolor}]",nm)
-        self.pset("CheckpointLoaderSimple","ckpt_name",nm)
-        self.pset("SaveImage","filename_prefix",nm)
+        self.pset("CheckpointLoaderSimple","ckpt_name",fullpath)
+        self.pset("SaveImage","filename_prefix",name)
         #print(f"[{ccolor}]self.char : [/{ccolor}]",self.char)
         #--------------------------------
         print(f"[{ccolor}]self.char after : [/{ccolor}]",self.char)
