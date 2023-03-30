@@ -55,6 +55,39 @@ class PromptMaker:
         #print("padd : ", nodename,class_type,n)
         self.nodefuncs[nodename]=func
         return n
+    #----------------------------
+    def dupdate(self,update):
+        for k in update:
+            #print(f"[{ccolor}]k : [/{ccolor}]",k)
+            if k in self.char:
+                #print(f"if k in self.char", k,   k in self.char)
+                #print(f"[{ccolor}]cfilldic\[{k}] : [/{ccolor}]",cfilldic[k])
+                #print(f"[{ccolor}]cchar\[{k}] : [/{ccolor}]",cchar[k])
+                for j in update[k]:
+                    #print(f"for j in update[k]", j, type(self.char[k]))
+                    if j in self.char[k]:
+                         #print(f"j in self.char[k]", j in self.char[k],self.char[k])
+                    #elif type(cchar[k]) is None:
+                    #    cchar[k][j]=cfilldic[k][j]
+                    #    print(f"[{ccolor}]cfilldic\[{k}]\[{j}] : [/{ccolor}]",cfilldic[k][j])
+                    #    print(f"[{ccolor}]cchar\[{k}]\[{j}] : [/{ccolor}]",cchar[k][j])
+                        continue
+                    else:
+                        #print(f"j in cchar[k]", j in self.char[k],self.char[k])
+                        self.char[k][j]=update[k][j]
+            else:
+                #print(f"if k in self.char", k,   k in self.char)
+                self.char[k]=update[k]
+        if "lora_strength" in update :
+            tmpu=update["lora_strength"]
+            if "lora_strength" in self.char :
+                tmpc=self.char["lora_strength"]
+                for j in tmpu:
+                    if not j in tmpc:
+                        tmpc[j]=tmpu[j]
+            else:
+                self.char["lora_strength"]=update["lora_strength"]
+            
 
     #----------------------------
     def LoraLoader(self,name):
@@ -108,39 +141,6 @@ class PromptMaker:
     def lora_set(self,key,value):
 
         self.pset(self.loratag[self.c['lora']],key,value)
-            
-    #----------------------------
-    def dupdate(self,update):
-        for k in update:
-            #print(f"[{ccolor}]k : [/{ccolor}]",k)
-            if k in self.char:
-                #print(f"if k in self.char", k,   k in self.char)
-                #print(f"[{ccolor}]cfilldic\[{k}] : [/{ccolor}]",cfilldic[k])
-                #print(f"[{ccolor}]cchar\[{k}] : [/{ccolor}]",cchar[k])
-                for j in update[k]:
-                    #print(f"for j in update[k]", j, type(self.char[k]))
-                    if j in self.char[k]:
-                         #print(f"j in self.char[k]", j in self.char[k],self.char[k])
-                    #elif type(cchar[k]) is None:
-                    #    cchar[k][j]=cfilldic[k][j]
-                    #    print(f"[{ccolor}]cfilldic\[{k}]\[{j}] : [/{ccolor}]",cfilldic[k][j])
-                    #    print(f"[{ccolor}]cchar\[{k}]\[{j}] : [/{ccolor}]",cchar[k][j])
-                        continue
-                    else:
-                        #print(f"j in cchar[k]", j in self.char[k],self.char[k])
-                        self.char[k][j]=update[k][j]
-            else:
-                #print(f"if k in self.char", k,   k in self.char)
-                self.char[k]=update[k]
-        if "lora_strength" in update :
-            tmpu=update["lora_strength"]
-            if "lora_strength" in self.char :
-                tmpc=self.char["lora_strength"]
-                for j in tmpu:
-                    if not j in tmpc:
-                        tmpc[j]=tmpu[j]
-            else:
-                self.char["lora_strength"]=update["lora_strength"]
             
 
     #----------------------------
@@ -256,7 +256,30 @@ class PromptMaker:
                 values=dicts[key]
                 for v in values:
                     self.pset(key,v,values[v])
-
+        #--------------------------------
+        #dset(self.char,"ckpt_name",ckptname)
+        #dset(self.char,"vae_name",vaename)
+        if "ckpt_name" in self.char:
+            name=fullpath=dget(self.char,"ckpt_name",ckptnames)
+            #print(f"[{ccolor}]nm : [/{ccolor}]",nm ,ckptname)
+            name=fullpath=vchoice(name,ckptname)
+        elif "ckpt_path" in self.char:
+            (name,fullpath)=filenameget(lget(self.char["ckpt_path"]))
+            #print(f"[{ccolor}]name,fullpath2 : [/{ccolor}]",name,fullpath)
+        elif "ckpt" in self.char:
+            tmp=self.char["ckpt"]
+            name=fullpath=tmp["name"]
+            cpositive=self.char["positive"]
+            dpositive=tmp["positive"]
+            #print(f"[{ccolor}]cpositive : [/{ccolor}]",cpositive)
+            #print(f"[{ccolor}]dpositive : [/{ccolor}]",dpositive)
+            deepfill(cpositive,dpositive)
+            #print(f"[{ccolor}]name,fullpath1 : [/{ccolor}]",name,fullpath)
+        #print(f"[{ccolor}]name,fullpath : [/{ccolor}]",name,fullpath)
+        #print(f"[{ccolor}]nm : [/{ccolor}]",nm)
+        self.pset("CheckpointLoaderSimple","ckpt_name",fullpath)
+        self.pset("SaveImage","filename_prefix",name)
+        #print(f"[{ccolor}]self.char : [/{ccolor}]",self.char)
         #--------------------------------
         tmp=dget(self.char,"positive",positive)
         #print("tmp1" , tmp)
@@ -277,22 +300,7 @@ class PromptMaker:
         nm=vchoice(nm,vaename)
         #print(f"[{ccolor}]nm : [/{ccolor}]",nm)
         self.pset("VAELoader","vae_name",nm)
-        #--------------------------------
-        #dset(self.char,"ckpt_name",ckptname)
-        #dset(self.char,"vae_name",vaename)
-        if "ckpt_path" in self.char:
-            (name,fullpath)=filenameget(lget(self.char["ckpt_path"]))
-            #print(f"[{ccolor}]name,fullpath2 : [/{ccolor}]",name,fullpath)
-        else:
-            name=fullpath=dget(self.char,"ckpt_name",ckptnames)
-            #print(f"[{ccolor}]nm : [/{ccolor}]",nm ,ckptname)
-            name=fullpath=vchoice(name,ckptname)
-            #print(f"[{ccolor}]name,fullpath1 : [/{ccolor}]",name,fullpath)
-        #print(f"[{ccolor}]name,fullpath : [/{ccolor}]",name,fullpath)
-        #print(f"[{ccolor}]nm : [/{ccolor}]",nm)
-        self.pset("CheckpointLoaderSimple","ckpt_name",fullpath)
-        self.pset("SaveImage","filename_prefix",name)
-        #print(f"[{ccolor}]self.char : [/{ccolor}]",self.char)
+
         #--------------------------------
         if "steps" in self.char:
             self.pset("KSampler","steps",25)

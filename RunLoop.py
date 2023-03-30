@@ -171,6 +171,9 @@ filldic={
 			"sampler_name": "dpmpp_sde",
 			"scheduler": "karras",
 		},
+		"CheckpointLoaderSimple" : {
+			#"ckpt_name": "3moonDollAnime_3moonDollAnime-fp16",
+		},
 	},
 
 	"denoise_min": 0.75,
@@ -196,6 +199,7 @@ ckptloopnum=0
 charloopnum=0
 try:
     while True:
+        tmpdic={}
         
         settuplistdic=JsonLoader2(f"{settup['jsonpath']}settup.json",f"{settup['jsonpath']}settup.json",settup)
 
@@ -226,21 +230,35 @@ try:
         #ckptlistdic=JsonLoader2(f"{settup['jsonpath']}ckpt-*.json",f"{settup['jsonpath']}ckpt-sample.json",ckptdic)
         #vaelistdic=JsonLoader2(f"{settup['jsonpath']}vae-*.json",f"{settup['jsonpath']}vae-sample.json",vaedic)
         #loralistdic=JsonLoader2(f"{settup['jsonpath']}lora-*.json",f"{settup['jsonpath']}lora-sample.json",loradic)
-        
-        if ckptloopnum <= 0:
-            if len(ckptlistdic) and random.random()<=settup["perckptdic"]:
-                print(f"[{ccolor}]settup perckptdic[/{ccolor}]")
-                tmp=list(random.choice(ckptlistdic).keys())
-            else:
-                tmp=ckptnames
-            ckptname=random.choice(tmp)
-            print(f"[{ccolor}]ckptname : [/{ccolor}]",ckptname)
+        # ----------------
+        filldic=random.choice(filllistdic)
+        deepfill(tmpdic,filldic)
+        # ----------------
+        if "ckpt" in tmpdic:
+            print(f"[{ccolor}]tmpdic : [/{ccolor}]",tmpdic)
+        else:
+            if ckptloopnum <= 0:
+                if len(ckptlistdic) and random.random()<=settup["perckptdic"]:
+                    print(f"[{ccolor}]settup perckptdic[/{ccolor}]")
+                    tmp=list(random.choice(ckptlistdic).keys())
+                else:
+                    tmp=ckptnames
+                ckptname=random.choice(tmp)
+                if type(tmp) is dict:
+                    ckptpropt=tmp[ckptname]
+                else:
+                    ckptpropt=""
+                print(f"[{ccolor}]ckptname : [/{ccolor}]",ckptname)
 
-            ckptloopnum = settup["ckptloop"]
-        ckptloopnum-=1
-        console.rule(f" {ckptname} - {ckptloopnum+1} / {settup['ckptloop']} " )
+                ckptloopnum = settup["ckptloop"]
+            ckptloopnum-=1
+            console.rule(f" {ckptname} - {ckptloopnum+1} / {settup['ckptloop']} " )
+            tmpdic["ckpt"]={
+                "name" : ckptname,
+                "positive" : ckptpropt
+            }
         
-        
+        # ----------------
         if len(vaelistdic) and random.random()<=settup["pervaedic"]:
             print(f"[{ccolor}]settup pervaedic[/{ccolor}]")
             tmp=list(random.choice(vaelistdic).keys())
@@ -248,7 +266,9 @@ try:
             tmp=vaenames
         vaename=random.choice(tmp)
         print(f"[{ccolor}]vaename : [/{ccolor}]",vaename)
-        
+        tmpdic["vae_name"]=vaename
+        # ----------------
+        # ----------------
         if len(loralistdic) and random.random()<=settup["perloradic"]:
             print(f"[{ccolor}]settup perloradic[/{ccolor}]")
             tmp=list(random.choice(loralistdic).keys())
@@ -256,20 +276,7 @@ try:
             tmp=loranames
         loraname=random.choice(tmp)
         print(f"[{ccolor}]loraname : [/{ccolor}]",loraname)
-
-        if charloopnum <= 0:
-            chardic=random.choice(charlistdic)
-            char_name=random.choice(list(chardic.keys()))
-            charloopnum = settup["charloop"]
-            print(f"[{ccolor}]char_name change [/{ccolor}]",char_name)
-        charloopnum-=1
-        console.rule(f" {char_name} - {charloopnum+1} / {settup['charloop']} " )
-        # ----------------
-        filldic=random.choice(filllistdic)
-        tmpdic={}
-        tmpdic["ckpt_name"]=ckptname
-        tmpdic["vae_name"]=vaename
-        # ----------------
+        
         if len(loralistdic) and random.random()>=settup["noloradic"]:
             print(f"[{ccolor}]noloradic pass[/{ccolor}]")
             tmpdic["lora_set"]={}
@@ -279,12 +286,25 @@ try:
                 tmpdic["lora_set"][loraname]={}
                 
         # ----------------
+        if charloopnum <= 0:
+            chardic=random.choice(charlistdic)
+            char_name=random.choice(list(chardic.keys()))
+            charloopnum = settup["charloop"]
+            print(f"[{ccolor}]char_name change [/{ccolor}]",char_name)
+        charloopnum-=1
+        console.rule(f" {char_name} - {charloopnum+1} / {settup['charloop']} " )
+        
+        deepupdate(tmpdic,chardic[char_name])
+
+
+
+        # ----------------
         #tmpdic.update(settup)
         #tmpdic.update(filldic)
         #print(f"[{ccolor}]tmpdic1 : [/{ccolor}]",tmpdic)
-        deepupdate(tmpdic,chardic[char_name])
+
         #print(f"[{ccolor}]tmpdic2 : [/{ccolor}]",tmpdic)
-        deepfill(tmpdic,filldic)
+        
         #tmpdic.update(chardic[char_name])
         #print(f"[{ccolor}]tmpdic3 : [/{ccolor}]",tmpdic)
         # ----------------
