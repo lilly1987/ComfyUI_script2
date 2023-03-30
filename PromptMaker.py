@@ -7,12 +7,14 @@ if __name__ == filename or __name__ =='__main__':
     from ModelList import *
     from wildcards import wildcards
     from randomlib import *
+    from mypath import *
 else:
     from .ConsoleColor import print, console
     #import .ModelList
     from .ModelList import *
     from .wildcards import wildcards
     from .randomlib import *
+    from .mypath import *
     
 #----------------------------
 positive={
@@ -291,6 +293,11 @@ class PromptMaker:
         self.pset("CheckpointLoaderSimple","ckpt_name",fullpath)
         self.pset("SaveImage","filename_prefix",name)
         #print(f"[{ccolor}]self.char : [/{ccolor}]",self.char)
+        #--------------------------------
+        if "steps" in self.char:
+            self.pset("KSampler","steps",25)
+        if "cfg" in self.char:
+            self.pset("KSampler","cfg",7)
         #--------------------------------
         print(f"[{ccolor}]self.char after : [/{ccolor}]",self.char)
         return self.prompts
