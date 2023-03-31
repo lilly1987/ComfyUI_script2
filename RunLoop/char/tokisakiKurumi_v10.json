@@ -1,0 +1,14 @@
+{
+    "my char": {
+        "positive": {
+            "char": "tokisaki kurumi, spirit form, school uniform,",
+            #"dress": "{__SaegusaMayumidress__|__character_dress__|__dress_my__|},"
+        },
+        "lora_set": {
+            "tokisakiKurumi_v10": {
+				"char_lora_set" : True,
+			},
+        },
+		#"ckpt_path" : ["..\\..\\models\\checkpoints\\2.5d\\*.safetensors","..\\..\\models\\checkpoints\\real\\*.safetensors"]
+    },
+}

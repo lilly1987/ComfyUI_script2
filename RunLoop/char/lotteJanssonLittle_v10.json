@@ -1,0 +1,14 @@
+{
+    "my char": {
+        "positive": {
+            "char": "lotte jansson,",
+            #"dress": "{__SaegusaMayumidress__|__character_dress__|__dress_my__|},"
+        },
+        "lora_set": {
+            "lotteJanssonLittle_v10": {
+				"char_lora_set" : True,
+			},
+        },
+		#"ckpt_path" : "..\\..\\models\\checkpoints\\real\\*.*"
+    },
+}

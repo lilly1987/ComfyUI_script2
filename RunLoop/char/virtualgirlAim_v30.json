@@ -1,0 +1,19 @@
+{
+    "my char": {
+        "positive": {
+            "quality": "__3d__,",
+            "char": "virtualgirl-aim, bangs, straight hair, long hair, black hair,",
+            #"dress": "frilled gothic lolita,"
+        },
+		"negative": {
+			"no": "__no3d__,",
+			"no": "EasyNegative,bad_prompt,ng_deepnegative_v1_75t,",
+		},
+        "lora_set": {
+            "virtualgirlAim_v30": {
+				"char_lora_set" : True,
+			},
+        },
+		#"ckpt_path" : ["..\\..\\models\\checkpoints\\2.5d\\*.safetensors","..\\..\\models\\checkpoints\\real\\*.safetensors"]
+    },
+}

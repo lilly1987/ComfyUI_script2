@@ -1,0 +1,191 @@
+{
+    "lillie": {
+        "positive": {
+            "char" : "character_pokemon_lillie, hat,",
+        },
+        "lora_name": "pokemonLillieLilieSD15_v4"
+    },
+    "lovedollLikenessMiyou": {
+        "positive": {
+            "char" : "photorealistic, __my__",
+        },
+		"negative" : "__no3d__",
+        "lora_name": "lovedollLikenessMiyou_v10"
+    },
+    "riceShowerUmamusume_v10": {
+        "positive": {
+            "char" : "(rice shower \(umamusume\)),",
+        },
+        "lora_name": "riceShowerUmamusume_v10"
+    },
+    "solutionEpsilon_v10": {
+        "positive": {
+            "char" : "solution_epsilon,",
+        },
+        "lora_name": "solutionEpsilon_v10"
+    },
+    "yorBriarSpyFamily_lykonV1": {
+        "positive": {
+            "char" : "__yor_briar_head__,",
+        },
+        "lora_name": "yorBriarSpyFamily_lykonV1"
+    },
+    "keqingGenshinImpactLora_v10": {
+        "positive": {
+           "char" : "keqing \(genshin impact\),",
+        },
+        "lora_name": "keqingGenshinImpactLora_v10"
+    },
+    "yamanakaInoNaruto_v1": {
+        "positive": {
+           "char" : "hair_over_one_eye, blonde_hair,",
+        },
+        "lora_name": "yamanakaInoNaruto_v1"
+    },
+    "gwenFromLeagueOf_gwenLolV1": {
+        "positive": {
+           "char" : "gwen \(league of legends\), drill hair,",
+        },
+        "lora_name": "gwenFromLeagueOf_gwenLolV1"
+    },
+    "barbara2in1Lora_v10": {
+        "positive": {
+           "char" : "{barbara \(genshin impact\)|barbara \(summertime sparkle\) \(genshin impact\)}, twintails, blonde hair,",
+        },
+        "lora_name": "barbara2in1Lora_v10"
+    },
+    "ningguang_v10": {
+        "positive": {
+           "char" : "__ningguang_head__,",
+        },
+        "lora_name": "ningguang_v10"
+    },
+    "kamisatoAyakaGenshin_ayakav10": {
+        "positive": {
+           "char" : "ayaka, genshin impact, kamisato ayaka, photorealistic,",
+        },
+		"negative" : "__no3d__",
+        "lora_name": "kamisatoAyakaGenshin_ayakav10"
+    },
+    "primKuroinu_10": {
+        "positive": {
+           "char" : "kuroinu_prim,",
+        },
+	
+        "lora_name": "primKuroinu_10"
+    },
+    "tsubeHanaTheHypnosis_tsubeHana": {
+        "positive": {
+           "char" : "Tsube Hana, side braid, ",
+        },
+	
+        "lora_name": "tsubeHanaTheHypnosis_tsubeHana"
+    },
+    "Fashion Girl": {
+        "positive": {
+           "char" : "fashi-girl, red lips, makeup, realistic,",
+        },
+		
+        "lora_name": ["fashionGirl_v50","fashionGirl_v47"]
+    },
+    "chineseCosplayerXiaorouseeu_v10": {
+        "positive": {
+           "char" : "black hair, bangs, ",
+        },
+		"negative" : "__no3d__",
+        "lora_name": ["chineseCosplayerXiaorouseeu_v10"]
+    },
+    "IrisPokemon_v10": {
+        "positive": {
+           "char" : "irisa, irisb, irisc,",
+        },
+        "lora_name": ["IrisPokemon_v10"]
+    },
+
+    "blackarona_v10": {
+        "positive": {
+            "char" :  "arona, white hair, ",
+        },
+        "lora_name": ["blackarona_v10"]
+    },
+    "gloriousAzurLaneSpring_GloriousSpiring": {
+        "positive": {
+           "char" : "blonde hair,",
+        },
+        "lora_name": ["gloriousAzurLaneSpring_GloriousSpiring"]
+    },
+    "gloriousAzurLaneSpring_GloriousSpiring": {
+        "lora_name": ["kidmoStyle_v1"]
+    },
+    "fuyusakaIori13SentinelsAegisRim_fuyusakaIoriSoftV10": {
+        "positive": {
+             "char" : "fuyusaka iori, fuyusaka iori 1, long hair, grey hair,",
+        },
+        "lora_name": ["fuyusakaIori13SentinelsAegisRim_fuyusakaIoriSoftV10"]
+    },
+    "9a91GirlsFrontline_v10": {
+        "positive": {
+            "char" : "BREAK 9a91maid, ",
+        },
+        "lora_name": ["9a91GirlsFrontline_v10"]
+    },
+    "BishojoMangekyoKotowariToMeikyuNoShojo_rengeV20": {
+        "positive": {
+            "char" : "renge, ",
+        },
+        "lora_name": ["BishojoMangekyoKotowariToMeikyuNoShojo_rengeV20"]
+    },
+    "Tsukihi": {
+        "positive": {
+            "char" : "araragi tsukihi, black {short|long} hair, bangs, {green kimono,{short kimono,|}|}",
+        },
+        "lora_name": ["araragiTsukihiLora_v1"]
+    },
+    "Ayesha": {
+        "positive": {
+            "char" : "charayesha, ayesha altugle,",
+        },
+        "lora_name": ["atelierAyeshaAyeshaAltugle_v1"]
+    },
+    #"bannerOfTheMaidNicoletteOudinot_grenadierV10": {
+    #    "positive": {
+	#		"char" : "grenadier,",
+    #    },
+    #    "lora_name": ["bannerOfTheMaidNicoletteOudinot_grenadierV10"]
+    #},
+    "rikoPokemonLora_autumn": {
+        "positive": {
+            "char" : "riko_pokemon,",
+        },
+        "lora_name": ["rikoPokemonLora_autumn"]
+    },
+    "yuelLora_v10": {
+        "positive": {
+            "char" : "{yuel\(origin\)|yuel\(dress\)},",
+        },
+        "lora_name": ["yuelLora_v10"]
+    },
+    "koronaKusakabeASkyFullOf_korona": {
+        "positive": {
+            "char" : "kusakabe korona,",
+        },
+        "lora_name": ["koronaKusakabeASkyFullOf_korona"]
+    },
+
+    "Katsushika": {
+        "positive": {
+			"char" : [
+			"katsushika hokusai \(fate\), { obi, hair flower, tabi, hair stick, fur collar,| hair flower, sandals, tabi, hair stick, yellow bow| pale skin, red eyes|single hair bun, hooded jacket, hairpin, }",
+			],
+		"dress" : "{kimono,|hair ornament, black dress,skirt, shoes,}",
+		"tentacles" : "{tentacles,|}",
+        },
+        "lora_name": ["katsushikaHokusaiFate_v2"]
+    },
+    "my": {
+		"positive" : {
+			"my": "__my__,",
+		},
+    },
+
+}

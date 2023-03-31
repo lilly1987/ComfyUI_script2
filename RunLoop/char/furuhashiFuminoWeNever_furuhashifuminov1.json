@@ -1,0 +1,14 @@
+{
+    "my char": {
+        "positive": {
+            "char": "furuhashi fumino,",
+            #"dress": "{__SaegusaMayumidress__|__character_dress__|__dress_my__|},"
+        },
+        "lora_set": {
+            "furuhashiFuminoWeNever_furuhashifuminov1": {
+				"char_lora_set" : True,
+			},
+        },
+		#"ckpt_path" : "..\\..\\models\\checkpoints\\real\\*.*"
+    },
+}

@@ -1,0 +1,18 @@
+{
+    "my char": {
+        "positive": {
+            "quality": "__3d__,",
+            "char": "lily_olis,",
+            #"dress": "frilled gothic lolita,"
+        },
+		"negative": {
+			"no": "__no3d__,",
+		},
+        "lora_set": {
+            "nakanoNinoInThe_v10": {
+				"char_lora_set" : True,
+			},
+        },
+		#"ckpt_path" : ["..\\..\\models\\checkpoints\\2.5d\\*.safetensors","..\\..\\models\\checkpoints\\real\\*.safetensors"]
+    },
+}

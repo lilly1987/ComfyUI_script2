@@ -1,0 +1,44 @@
+{
+    "yurisaLora_v40": {
+        #"positive": "yurisa, best quality, ultra high res, (photorealistic:1.4), 1girl,solo, full lips, a sultry gaze, dress, __shoulder__, __heel__, nsfw, (breastsout:1.2), (breasts exposure:1.2), (nipple exposure:1.2), (pregnant:1.2),",
+        "positive": {
+            "quality" : "masterpiece,best quality,extremely detailed,  ",
+            "char" : "long hair,  bangs, ",
+			"dress" : "school uniform,ribbon-trimmed sleeves, wide sleeves, ",
+			"pregnant":"",
+        },
+		"negative": "(worst quality:2),(low quality:2),lowres,normal quality,skin spots,acnes,skin blemishes,age spot,bad anatomy,missing fingers,deformed,malformed limbs,extra limbs,disfigured,missing arms,missing legs,extra legs,extra finger,",
+		"lora_set": {
+		#"{yurisaLora_v40|yurisaLora_v30|yurisaLora_v20|yurisaLora_v10}" : {
+			"cuteKoreanGirlLora_cuteKoreanGirlLora" : {
+				#"strength_model": 1.00,
+				#"strength_model_min": 0.75,
+				#"strength_model_max": 1.00,
+
+				#"char_lora_set" : True,
+			},			          
+		},
+		#"ckpt_name" : "fantasticmixReal_v10",
+		"node_setup":{
+			#"ImageSetup" : {
+			#	"batch_size": 1,
+			#	#"height": 704,
+			#	#"height": 768,
+			#	"height": 512,
+			#	"width": 512,
+			#	#"width": 384,
+			#},
+			#"KSampler" : {
+			#	"sampler_name": "dpmpp_sde",
+			#	"scheduler": "karras",
+			#	"steps": 20,
+			#	"cfg": 7,
+			#},
+		},
+		#"steps" : 25,
+		#"cfg" : 7,
+		#"ckpt_name" : "D:\\models\\Stable-diffusion\\real\\ChilloutMix-ni-fp16.safetensors"
+		#"ckpt_name" : "chilloutmix_NiPrunedFp16Fix-fp16"
+		#"ckpt_path" : "..\\..\\models\\checkpoints\\real\\*.*"
+    },
+}

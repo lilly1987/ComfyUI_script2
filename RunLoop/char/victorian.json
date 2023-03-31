@@ -1,0 +1,14 @@
+{
+    "my char": {
+        "positive": {
+            #"char": "yanfei,",
+            "dress": "{victorian {|long} dress|victoria maid},"
+        },
+        #"lora_set": {
+        #    "yanfei_v1": {
+		#		"char_lora_set" : True,
+		#	},
+        #},
+		#"ckpt_path" : ["..\\..\\models\\checkpoints\\2.5d\\*.safetensors","..\\..\\models\\checkpoints\\real\\*.safetensors"]
+    },
+}

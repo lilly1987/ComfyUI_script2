@@ -1,0 +1,14 @@
+{
+    "my char": {
+        "positive": {
+            #"char": "yanfei,",
+            #"dress": "frilled gothic lolita,"
+        },
+        "lora_set": {
+            "hoshimiMiyabiZenlessZoneZero_v10": {
+				"char_lora_set" : True,
+			},
+        },
+		#"ckpt_path" : ["..\\..\\models\\checkpoints\\2.5d\\*.safetensors","..\\..\\models\\checkpoints\\real\\*.safetensors"]
+    },
+}

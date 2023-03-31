@@ -1,0 +1,21 @@
+{
+    "no113Girl_no113": {
+        "positive": {
+            #"char" : "Araragi Tsukihi, long hair,",
+            #"kimono" : "short kimono,",
+            #"dress": "{__SaegusaMayumidress__|__character_dress__|__dress_my__|},",
+        },
+		"lora_set": {
+			"no113Girl_no113" : {
+				#"strength_model": 1.00,
+				#"strength_clip" : 1.00,
+				#"strength_model_min": 0.875,
+				#"strength_model_max": 1.00,
+				#"strength_clip_min" : 0.875,
+				#"strength_clip_max" : 1.00,
+				"char_lora_set" : True,
+			},			          
+		},
+		#"ckpt_path" : "..\\..\\models\\checkpoints\\real\\*.*"
+    },
+}

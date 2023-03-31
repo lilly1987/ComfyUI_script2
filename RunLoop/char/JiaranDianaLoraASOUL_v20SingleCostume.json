@@ -1,0 +1,23 @@
+{
+    "my": {
+        "positive": {
+            "char": "jiaran,",
+            #"dress": "{__SaegusaMayumidress__|__character_dress__|__dress_my__|},",
+			
+        },
+    "negative": {
+        #"no": "__no3d__,",
+    },
+		"lora_set": {
+			"JiaranDianaLoraASOUL_v20SingleCostume" : {
+				#"strength_model": 1.00,
+				#"strength_clip" : 1.00,
+				#"strength_model_min": 0.875,
+				#"strength_model_max": 1.00,
+				#"strength_clip_min" : 0.875,
+				#"strength_clip_max" : 1.00,
+				"char_lora_set" : True,
+			},			          
+		}
+    },
+}

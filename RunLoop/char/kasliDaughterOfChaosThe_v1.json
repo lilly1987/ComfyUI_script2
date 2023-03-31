@@ -1,0 +1,14 @@
+{
+    "my char": {
+        "positive": {
+            "char": "kasli,",
+            #"dress": "{__SaegusaMayumidress__|__character_dress__|__dress_my__|},"
+        },
+        "lora_set": {
+            "kasliDaughterOfChaosThe_v1": {
+				"char_lora_set" : True,
+			},
+        },
+		#"ckpt_path" : ["..\\..\\models\\checkpoints\\2.5d\\*.safetensors","..\\..\\models\\checkpoints\\real\\*.safetensors"]
+    },
+}

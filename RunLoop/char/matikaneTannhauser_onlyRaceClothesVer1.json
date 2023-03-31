@@ -1,0 +1,14 @@
+{
+    "my char": {
+        "positive": {
+            "char": "matikane tannhauser \(umamusume\),",
+            #"dress": "{__SaegusaMayumidress__|__character_dress__|__dress_my__|},"
+        },
+        "lora_set": {
+            "matikaneTannhauser_onlyRaceClothesVer1": {
+				"char_lora_set" : True,
+			},
+        },
+		#"ckpt_path" : "..\\..\\models\\checkpoints\\real\\*.*"
+    },
+}
