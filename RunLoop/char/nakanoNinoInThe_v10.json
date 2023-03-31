@@ -2,7 +2,7 @@
     "my char": {
         "positive": {
             "quality": "__3d__,",
-            "char": "lily_olis,",
+            #"char": "lily_olis,",
             #"dress": "frilled gothic lolita,"
         },
 		"negative": {

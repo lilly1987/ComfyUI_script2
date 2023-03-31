@@ -269,12 +269,13 @@ class PromptMaker:
         elif "ckpt" in self.char:
             tmp=self.char["ckpt"]
             name=fullpath=tmp["name"]
-            cpositive=self.char["positive"]
-            dpositive=tmp["positive"]
-            #print(f"[{ccolor}]cpositive : [/{ccolor}]",cpositive)
-            #print(f"[{ccolor}]dpositive : [/{ccolor}]",dpositive)
-            deepfill(cpositive,dpositive)
-            #print(f"[{ccolor}]name,fullpath1 : [/{ccolor}]",name,fullpath)
+            if "positive" in tmp:
+                cpositive=self.char["positive"]
+                dpositive=tmp["positive"]
+                #print(f"[{ccolor}]cpositive : [/{ccolor}]",cpositive)
+                #print(f"[{ccolor}]dpositive : [/{ccolor}]",dpositive)
+                deepfill(cpositive,dpositive)
+                #print(f"[{ccolor}]name,fullpath1 : [/{ccolor}]",name,fullpath)
         #print(f"[{ccolor}]name,fullpath : [/{ccolor}]",name,fullpath)
         #print(f"[{ccolor}]nm : [/{ccolor}]",nm)
         self.pset("CheckpointLoaderSimple","ckpt_name",fullpath)

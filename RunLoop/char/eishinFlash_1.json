@@ -1,12 +1,12 @@
 {
-    "atelierAyeshaAyeshaAltugle_v1": {
+    "my": {
         "positive": {
-            "char": "charayesha,ayesha altugle,",
-            #"dress": "bow,hat,skirt,",
+            #"char": "eishin flash \(umamusume\),",
             #"dress": "{__SaegusaMayumidress__|__character_dress__|__dress_my__|},",
+			
         },
 		"lora_set": {
-			"{atelierAyeshaAyeshaAltugle_v1|atelierAyeshaAyeshaAltugle_v2}" : {
+			"eishinFlash_1" : {
 				#"strength_model": 1.00,
 				#"strength_clip" : 1.00,
 				#"strength_model_min": 0.875,
