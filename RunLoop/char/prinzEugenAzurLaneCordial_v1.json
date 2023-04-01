@@ -1,0 +1,24 @@
+{
+    "my": {
+        "positive": {
+            #"quality": "best quality, ultra high res, (photorealistic:1.4), ",
+            #"char": "shiina hiyori,",
+            #"dress": "{black thighhighs, bracer, red skirt,|caglimited, blonde hair, hairband, long hair, purple eyes, red footwear, see-through sleeves, white dress, white rose,}",
+			
+        },
+		"negative": {
+			#"no": "paintings, sketches, (worst quality:2), (low quality:2), (normal quality:2), lowres, normal quality, ((monochrome)), ((grayscale)), skin spots, acnes, skin blemishes, age spot, glans, (only body),",
+		},
+		"lora_set": {
+			"prinzEugenAzurLaneCordial_v1" : {
+				#"strength_model": 1.00,
+				#"strength_clip" : 1.00,
+				#"strength_model_min": 0.875,
+				#"strength_model_max": 1.00,
+				#"strength_clip_min" : 0.875,
+				#"strength_clip_max" : 1.00,
+				"char_lora_set" : True,
+			},			          
+		}
+    },
+}
