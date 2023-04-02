@@ -1,0 +1,12 @@
+{
+    "eulaRealisticGenshin_eula": {
+        "positive": {
+            "char" : "yae miko, pink hair, long hair, ",
+        },
+		"negative" : "__no3d__",
+        "lora_name": ["eulaRealisticGenshin_eula"],
+        "lora_add": {
+			"koreandolllikeness_V10" : "kpop idol, (ulzzang-6500:0.7), "
+		}
+    },
+}

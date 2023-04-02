@@ -1,0 +1,59 @@
+{
+    "SaegusaMayumi": {
+        "positive": {
+            "char": "mayumi,__mayumi__,",
+            "dress": "{__SaegusaMayumidress__|__character_dress__|__dress_my__|},"
+        },
+        "lora_name": {
+            "SaegusaMayumiTheIrregularAt_mayumi": "",
+        }
+    },
+    "Tomoyo": {
+        "positive": {
+            "char" : "(daidouji_tomoyo:1.2), (tomoyo:1.2), black long hair, blunt bangs, cardcaptor sakura \(style\),",
+        },
+        "lora_name": ["daidoujiTomoyo_v01","tomoyo_V1Epoch6","sakuraKinomoto_sakuraV1Epoch6","cardcaptorSakura_sakuraEpoch6"],
+    },
+    "diana": {
+        "positive": {
+            "char" : "diana cavendish, long wavy hair, multicolored two-tone streaked hair, light green hair, light blonde hair, {sharp eyes, sharply eyelashes, sharply eyeliner,| } small breasts,",
+			"dress":"{__diana_cavendish_dress__|__character_dress__|__dress_my__|},",
+        },
+        "lora_name": "dianaCavendishLittle_v11ClothesFix",
+    },
+    "Schnee": {
+        "positive": {
+            "char" : "weiss schnee, white long hair, bangs, hair between eye, {sharp eyes, sharply eyelashes, sharply eyeliner,| } small breasts,",
+        },
+        "lora_name": ["weissSchneeRWBY_weissSchneeV10.safetensors","weissSchneeLORA_weissSchnee.safetensors"],
+    },
+    #"bannerOfTheMaidMarieTherese_marieThereseV20": {
+    #    "positive": {
+    #        "char" : "marie therese,",
+    #        "focus" : "(((full body))),",
+    #    },
+    #    "lora_name": ["bannerOfTheMaidMarieTherese_marieThereseV20"]
+    #},
+    "shalltearBloodfallen_v10": {
+        "positive": {
+            "char" : "{shalltear|shalltearcostume}, ponytail, ",
+        },
+        "lora_name": ["shalltearBloodfallen_v10"]
+    },
+    "makarovGirls_10": {
+        "positive": {
+            "char" : "{makarov|makarovmod}, ",
+        },
+        "lora_name": ["makarovGirls_10"]
+    },
+    "eulaRealisticGenshin_eula": {
+        "positive": {
+            "char" : "yae miko, pink hair, long hair, ",
+        },
+		"negative" : "__no3d__",
+        "lora_name": ["eulaRealisticGenshin_eula"],
+        "lora_add": {
+			"koreandolllikeness_V10" : "kpop idol, (ulzzang-6500:0.7), "
+		}
+    },
+}

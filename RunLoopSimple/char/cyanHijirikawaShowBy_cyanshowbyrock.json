@@ -1,0 +1,14 @@
+{
+    "my char": {
+        "positive": {
+            "char": "green eyes, curly hair, show_by_rock, curls, cat ears, cat girl,",
+            #"dress": "{__SaegusaMayumidress__|__character_dress__|__dress_my__|},"
+        },
+        "lora_set": {
+            "cyanHijirikawaShowBy_cyanshowbyrock": {
+				"char_lora_set" : True,
+			},
+        },
+		#"ckpt_path" : ["..\\..\\models\\checkpoints\\2.5d\\*.safetensors","..\\..\\models\\checkpoints\\real\\*.safetensors"]
+    },
+}

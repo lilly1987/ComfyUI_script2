@@ -1,0 +1,14 @@
+{
+    "loraGirlsGoddesses_loraggl15": {
+        "positive": {
+            "char": "loraggl15,",
+            #"dress": "{__SaegusaMayumidress__|__character_dress__|__dress_my__|},"
+        },
+        "lora_set": {
+            "loraGirlsGoddesses_loraggl15": {
+				
+			},
+        },
+		#"ckpt_path" : "..\\..\\models\\checkpoints\\real\\*.*"
+    },
+}

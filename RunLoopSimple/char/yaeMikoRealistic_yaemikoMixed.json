@@ -1,0 +1,17 @@
+{
+    "my char": {
+        "positive": {
+            #"char": "diana cavendish,",
+            #"dress": "{__SaegusaMayumidress__|__character_dress__|__dress_my__|},"
+        },
+        "negative": {
+            "no": "__no3d__,",
+        },
+        "lora_set": {
+            "yaeMikoRealistic_yaemikoMixed": {
+				"char_lora_set" : True,
+			},
+        },
+		#"ckpt_path" : ["..\\..\\models\\checkpoints\\2.5d\\*.safetensors","..\\..\\models\\checkpoints\\real\\*.safetensors"]
+    },
+}

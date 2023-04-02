@@ -1,0 +1,97 @@
+{
+    #"my": {
+    #    "positive": {
+	#		"dress": "victorian {long |}dress,",
+    #    },
+    #},
+    "Tomoyo": {
+        "positive": {
+            "char" : "(daidouji_tomoyo:1.1), (tomoyo:1.1), black long hair, blunt bangs, cardcaptor sakura \(style\),",
+            #"dress": "{__SaegusaMayumidress__|__character_dress__|__dress_my__|},",
+        },
+		"lora_set": {
+			"{daidoujiTomoyo_v01|daidoujiTomoyo_v01|tomoyo_V1Epoch6|cardcaptorSakura_sakuraEpoch6|cardcaptorSakura_sakuraEpoch6|cardcaptorSakura_sakuraEpoch6|cardcaptorSakura_sakuraEpoch6|sakuraKinomoto_sakuraV1Epoch6}" : {
+				#"strength_model": 1.00,
+				#"strength_clip" : 1.00,
+				#"strength_model_min": 0.875,
+				#"strength_model_max": 1.00,
+				#"strength_clip_min" : 0.875,
+				#"strength_clip_max" : 1.00,
+				"char_lora_set" : True,
+			},			          
+		},
+    },
+    "diana": {
+        "positive": {
+            "char": "__diana_cavendish_head__,",
+            "dress": "{__diana_cavendish_dress__|__character_dress__|__dress_my__|},",
+        },
+		"lora_set": {
+			"{dianaCavendishLittle_v11ClothesFix|dianaCavendishLittle_v10}" : {
+				#"strength_model": 1.00,
+				#"strength_clip" : 1.00,
+				#"strength_model_min": 0.875,
+				#"strength_model_max": 1.00,
+				#"strength_clip_min" : 0.875,
+				#"strength_clip_max" : 1.00,
+				"char_lora_set" : True,
+			},			          
+		}
+    },
+    "SaegusaMayumi": {
+        "positive": {
+            "char": "__mayumi__,",
+            "dress": "{__SaegusaMayumidress__|__character_dress__|__dress_my__|__dress__},",
+            #"dress": "{victorian Gothic lolita frilled maid dress,|__SaegusaMayumidress__,|gothgal, wearing a gothgal outfit,},",
+			
+        },
+		"lora_set": {
+			"SaegusaMayumiTheIrregularAt_mayumi" : {
+				#"strength_model": 0.7500,
+				#"strength_clip" : 1.00,
+				#"strength_model_min": 0.875,
+				#"strength_model_max": 1.00,
+				#"strength_clip_min" : 0.875,
+				#"strength_clip_max" : 1.00,
+				"char_lora_set" : True,
+			},			          
+		},
+		#"ckpt_name" : "GyoZanMixX"
+    },
+    "elaina": {
+        "positive": {
+            "char": "elaina \(majo no tabitabi\),",
+            #"dress": "{__SaegusaMayumidress__|__character_dress__|__dress_my__|},",
+			
+        },
+		"lora_set": {
+			"elainaMajoNoTabitabi_v10" : {
+				#"strength_model": 1.00,
+				#"strength_clip" : 1.00,
+				#"strength_model_min": 0.875,
+				#"strength_model_max": 1.00,
+				#"strength_clip_min" : 0.875,
+				#"strength_clip_max" : 1.00,
+				"char_lora_set" : True,
+			},			          
+		}
+    },
+    "frenda": {
+        "positive": {
+            "char": "fren,little girl,blonde long hair,",
+            "dress": "bow,hat,skirt,pantyhose,",
+            #"dress": "{__SaegusaMayumidress__|__character_dress__|__dress_my__|},",
+        },
+		"lora_set": {
+			"frendaRailgun_v10" : {
+				#"strength_model": 1.00,
+				#"strength_clip" : 1.00,
+				#"strength_model_min": 0.875,
+				#"strength_model_max": 1.00,
+				#"strength_clip_min" : 0.875,
+				#"strength_clip_max" : 1.00,
+				"char_lora_set" : True,
+			},			          
+		}
+    },
+}

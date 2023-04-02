@@ -1,0 +1,22 @@
+{
+    "ccolor": "bright_yellow",
+    "jsonpath": "./RunLoopSimple/",
+    "ckptloop": 6,
+    "charloop": 1,
+    "noloradic": 10.50,
+    "perloradic": 0.0,
+    #"perckptdic": 0.1250,
+    "perckptdic": 0.00,
+    "pervaedic": 0.0,
+    #"positiveRandom": False,
+    "positiveRandom": True,
+	"random_lora_set" :{
+		"strength_model_min": 0.3333,
+		"strength_model_max": 0.6666,
+		#"strength_clip_min" : 0.875,
+		#"strength_clip_max" : 1.00,
+		#"strength_model": 1.00,
+		"strength_clip" : 1.00,
+	},
+
+}

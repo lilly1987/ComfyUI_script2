@@ -1,0 +1,19 @@
+{
+    "atelierShallie_v108": {
+        "positive": {
+            "char" : "shallistera,",
+            #"dress": "{__SaegusaMayumidress__|__character_dress__|__dress_my__|},",
+        },
+		"lora_set": {
+			"atelierShallie_v108" : {
+				#"strength_model": 1.00,
+				#"strength_clip" : 1.00,
+				#"strength_model_min": 0.875,
+				#"strength_model_max": 1.00,
+				#"strength_clip_min" : 0.875,
+				#"strength_clip_max" : 1.00,
+				"char_lora_set" : True,
+			},			          
+		},
+    },
+}

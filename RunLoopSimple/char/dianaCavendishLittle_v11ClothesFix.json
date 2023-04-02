@@ -1,0 +1,14 @@
+{
+    "my char": {
+        "positive": {
+            "char": "diana cavendish,",
+            #"dress": "{__SaegusaMayumidress__|__character_dress__|__dress_my__|},"
+        },
+        "lora_set": {
+            "dianaCavendishLittle_v11ClothesFix": {
+				"char_lora_set" : True,
+			},
+        },
+		#"ckpt_path" : "..\\..\\models\\checkpoints\\real\\*.*"
+    },
+}

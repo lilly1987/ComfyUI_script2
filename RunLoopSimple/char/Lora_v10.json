@@ -1,0 +1,43 @@
+{
+    "yurisaLora_v40": {
+        #"positive": "yurisa, best quality, ultra high res, (photorealistic:1.4), 1girl,solo, full lips, a sultry gaze, dress, __shoulder__, __heel__, nsfw, (breastsout:1.2), (breasts exposure:1.2), (nipple exposure:1.2), (pregnant:1.2),",
+        "positive": {
+            #"quality" : "best quality, (photorealistic:1.2), ultra high res, detailed face, ",
+            "char" : "xiaotuntunshu, long hair,  bangs, ",
+            "dress" : "school uniform,ribbon-trimmed sleeves, wide sleeves, ",
+			"pregnant":"",
+        },
+		"negative": "paintings, sketches, (worst quality:2), (low quality:2), (normal quality:2), lowres, normal quality, ((monochrome)), ((grayscale)), skin spots, acnes, skin blemishes, age spot, glans,bad hand,smile, nude, easynavigation",
+		"lora_set": {
+		#"{yurisaLora_v40|yurisaLora_v30|yurisaLora_v20|yurisaLora_v10}" : {
+			"Lora_v10" : {
+				#"strength_model": 1.00,
+				#"strength_model_min": 0.5,
+				#"strength_model_max": 1.00,
+				#"char_lora_set" : True,
+			},			          
+		},
+		#"ckpt_name" : "chilloutmix_NiPrunedFp32Fix",
+		"node_setup":{
+			#"ImageSetup" : {
+			#	"batch_size": 1,
+			#	#"height": 704,
+			#	#"height": 768,
+			#	"height": 512,
+			#	"width": 512,
+			#	#"width": 384,
+			#},
+			#KSampler" : {
+			#	"sampler_name": "dpmpp_sde",
+			#	"scheduler": "karras",
+			#	"steps": 20,
+			#	"cfg": 7,
+			#,
+		},
+		#"steps" : 25,
+		#"cfg" : 7,
+		#"ckpt_name" : "D:\\models\\Stable-diffusion\\real\\ChilloutMix-ni-fp16.safetensors"
+		#"ckpt_name" : "chilloutmix_NiPrunedFp16Fix-fp16"
+		#"ckpt_path" : "..\\..\\models\\checkpoints\\real\\*.*"
+    },
+}

@@ -1,0 +1,14 @@
+{
+    "BishojoMangekyoWasurenagusaToEienNoShoujo_sawatariShizukuV10": {
+        "positive": {
+            "char": "sawatari shizuku,",
+            #"dress": "{__SaegusaMayumidress__|__character_dress__|__dress_my__|},"
+        },
+        "lora_set": {
+            "BishojoMangekyoWasurenagusaToEienNoShoujo_sawatariShizukuV10": {
+				"char_lora_set" : True,
+			},
+        },
+		#"ckpt_path" : "..\\..\\models\\checkpoints\\real\\*.*"
+    },
+}

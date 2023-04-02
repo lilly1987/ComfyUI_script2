@@ -1,0 +1,213 @@
+{
+	#"ckpt": {
+	#	"name": "zetacolorV5_zetacolorV5-fp16",
+	#	#"positive": {
+	#	#	"3moonDollAnime_3moonDollAnime": "kpop idol girl,(hyper realistic, photo realistic:1.3),",
+	#	#}
+	#},
+    "positive": {
+        "quality": "__quality1__,",
+        #"quality": "{__quality__|__quality_my__|__quality1__},",
+        "breasts": "(__breasts__),",
+        #"dress": "{long |}dress, {__character_dress__|__dress_my__|__dress__|__dress_code__|__dress1__},",
+        "dress": "{long |}dress,",
+        "off shoulder": "(__shoulder__),",
+        "skirt": "{__skirt__,|}",
+        "sleeve": "{__sleeve__,|}",
+        "heel": "{__heel__,|}",
+        #"acc": "{__acc_my__,|}",
+        "nsfw": "nsfw, (nipples), (breasts exposure), (nipple exposure), (breastsout), ",
+        "uncensored": "uncensored, ",
+        #"nsfw": "nsfw, (breastsout, breasts exposure, nipple exposure,{exposure,|}:1.2), {(sex:1.2),|}",
+		#"vibrator":"{(vibrator in pussy:__1.00_1.49__),(pussy exposure:__1.00_1.49__),|}",
+		#"sex":"(sex:__1.00_1.49__),(1girl and 1boy:__1.00_1.49__),(penis:__1.00_1.49__),(pussy:__1.00_1.49__),",
+		#"vibrator":"(vibrator in pussy:__1.00_1.49__),(pussy exposure:__1.00_1.49__),",
+		#"pregnant":"{(pregnant:1.2),||}",
+        "hair": "hair,",
+        "body": "{slender, nature, curvy|__body__},",
+        #"ear": "{|__ear__},",
+        "focus": "full body,",
+        #"pose": "{standing|sitting},",
+        #"pose": "standing,",
+        "background": "black background,",
+	},
+    "negative": {
+        "no": "__no2d__,",
+        #"no": "__no3d__,",
+        "nude": "nude,",
+        "only body": "only body,",
+        "EasyNegative": "embedding:EasyNegative.safetensors,",
+    },
+	"lora_unique" : {
+		"sex": {
+			"per this" : 0.5000,
+			"amazonPositionSexAct_v10" : {    
+				"positive": "pov, pussy, sex,",
+			},
+			"conceptCowgirl_v10" : {     
+				"positive": "(__Cowgirl1__:1.3),",
+			},
+			"conceptFaketailAnal_v10" : {     
+				"positive": "faketail,",
+			},
+			"fromBelowPOV_v1" : {    
+				"positive": "from_below,  foreshortening ,",
+			},
+			"monstersexactlora79_v10" : {     
+				"positive": "(monster sex, huge penis, pussy, spread legs, large insertion, monster, stomach bulge:1.3),",
+			},
+			"lrChestStand_lrChestStand089" : {    
+				"positive": "chest stand, top-down_bottom-up,",
+			},
+			"koonago_V1" : {     
+				"positive": "koonago,minigirl,1boy, pov, penis hug, penis,",
+			},		              
+			"povBigBlackCockAnal_v01Epoch90" : {    
+				"positive": "a woman is riding a big black cock in anal,",
+			},
+			"povMissionaryVaginal_v1" : {     
+				"positive": "sex,",
+			},
+			"ridingDildoSexActLora_v11" : {    
+				"positive": "(Riding Dildo, Dildo, large insertion:1.3),",
+			},
+			"spooningPositionLora_v10" : {    
+				"positive": "spooning, sex, on side, spread legs, leg lift,",
+			},
+			"tiptoesStandingDoggy_ttfV3" : {    
+				"positive": "1boy, 1girl, standing_doggy, sex,",
+			},
+			"woodenHorseTestSexAct_v10" : {     
+				"positive": "(whb:1.3),",
+			},
+		},
+		"yuri": {
+			"per this" : 0.1000,
+			"yuriKiss_v01Beta" : {     
+				"positive": "(2girls:1.3), (yuri:1.3), (kiss:1.3),(kissing:1.3), (tongue kiss:1.3), looking at each other, hug, tongue, mouth open,",
+			},
+			"animeKisses_v1" : {     
+				"positive": "(2girls:1.3), (yuri:1.3), (kiss:1.3),(kissing:1.3), (tongue kiss:1.3), looking at each other, hug, tongue, mouth open,",
+			},
+			"frenchKiss_v1" : {     
+				"positive": "(2girls:1.3), (yuri:1.3), (kiss:1.3),(kissing:1.3), (tongue kiss:1.3), looking at each other, hug, tongue, mouth open,",
+			},
+			"betterKisses_v10IntialRelease" : {     
+				"positive": "(2girls:1.3), (yuri:1.3), (kiss:1.3),(kissing:1.3), (tongue kiss:1.3), looking at each other, hug, tongue, mouth open,",
+			},
+		},
+		"bondage": {
+			"per this" : 0.1,
+			"artistYimao_v10" : {    
+				"positive": "lewd, {gag,|} {bondage,|} {body-stocking,|} {piercing,|} {orgasm,|}",
+			},
+			"openGagMouth_v20" : {    
+				"positive": "circle gag mouth,",
+			},
+		},
+		"Cowgirl" : {		
+			"per this" : 0.00,
+			"conceptCowgirl_v10" : {     
+				"positive": "__Cowgirl1__, sex,",
+			},
+			"povBigBlackCockAnal_v01Epoch90" : {     
+				"positive": "a woman is riding a big black cock in anal, sex,",
+			},
+			"povMissionaryVaginal_v1" : {     
+				"positive": "sex,",
+			},
+		},
+		"hunged_girl": {
+			#"per this" : 01.00,
+			"per this" : 0.500,
+			"hunged_girl" : {     
+				"positive": "__hunged_girl1__,",
+			},
+		},
+		"dress" : {
+			"per this" : 0.100,
+			"thaiUniversity_v10" : {    
+				"positive": "white shirt short sleeve, {black pencil short skirt|black tight skirt},",
+			},
+			"gothGals_v10" : {    
+				"positive": "gothgal, wearing a gothgal outfit,",
+			},
+			"stockingsAndHigh_v1" : {    
+				"positive": "high heels, legwear,",
+			},
+		},
+		"Style": {
+			"per this" : 0.100,
+			"nixeuStyleLora_100" : {     
+				"positive": "nixeu,",
+			},
+			"t2ArtWorksTonyTaka_1" : {     
+				"positive": "nixeu,",
+			},
+			"dollStylePhotographyArtRealistic_dollPhotography" : {     
+				"positive": "doll, dd,",
+			},
+			"dollStylePhotographyArtRealistic_dollStandard" : {     
+				"positive": "doll, dd,",
+			},
+			"artistYimao_v10" : {    
+				"positive": "lewd, gag, bondage, body-stocking, ",
+			},
+		},
+	},
+	#"lora_one": {
+	#	#"koonago_V1" : {     
+	#	#	"positive": "koonago,minigirl,1boy, pov, penis hug, penis,",
+	#	#	"per this" : 0.05,
+	#	#},		              
+	#},
+	#"lora_set": {
+	#	"hunged_girl" : {     
+	#		"positive": "__hunged_girl1__,",
+	#		"per this" : 1.0
+	#	},
+	#},
+	"node_setup":{
+		"SimpleSamplerVAE" : {
+			"sampler_name": "dpmpp_2m",
+			#"sampler_name": "dpmpp_sde",
+			"scheduler": "karras",
+			"steps": 20,
+			"cfg": 3.0,
+			"batch_size": 1,
+			"height": 768,
+			"width": 384,
+		},
+		#"CheckpointLoaderSimple" : {
+		#	"ckpt_name": "3moonDollAnime_3moonDollAnime-fp16",
+		#},
+	},
+	"char_lora_set" :{
+		"strength_model_min": 0.25,
+		"strength_model_max": 0.75,
+		#"strength_model_max": 1.00,
+		"strength_clip_min" : 0.25,
+		"strength_clip_max" : 0.750,
+		#"strength_clip_max" : 1.00,
+		#"strength_model": 0.50,
+		#"strength_model": 1.00,
+		#"strength_clip" : 1.00,
+	},
+	#"strength_model_min": 0.00,
+	#"strength_model_max": 1.00,
+	"strength_model_min": 0.25,
+	#"strength_model_max": 0.5,
+	"strength_model_max": 0.75,
+	"strength_clip_min": 0.25,
+	#"strength_clip_max": 0.5,
+	"strength_clip_max": 0.75,
+	#"strength_clip_min" : 0.875,
+	#"strength_clip_min" : 0.9375,
+	#"strength_clip_max" : 1.00,
+	#"strength_clip_min" : 1.0,
+	#"strength_clip_max" : 1.2500,
+    #"strength_model": 0.500,
+    #"strength_clip" : 1.00,
+    "positiveRandom" : True,
+	
+}

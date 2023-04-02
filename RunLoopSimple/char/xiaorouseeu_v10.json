@@ -1,0 +1,41 @@
+{
+    "yurisaLora_v40": {
+        "positive": {
+            "char" : "xiaorouseeu,",
+            #"kimono" : "short kimono,",
+            #"dress": "{__SaegusaMayumidress__|__character_dress__|__dress_my__|},",
+        },
+		"negative": {
+			"no": "__no3d__,",
+			#"no": "EasyNegative,bad_prompt,ng_deepnegative_v1_75t,",
+		},
+		"lora_set": {
+		"xiaorouseeu_v10" : {
+				#"strength_model": 1.00,
+				#"strength_clip" : 1.00,
+				#"strength_model_min": 0.875,
+				#"strength_model_max": 1.00,
+				#"strength_clip_min" : 0.875,
+				#"strength_clip_max" : 1.00,
+				"char_lora_set" : True,
+			},			          
+		},
+		"ckpt_path" : "..\\..\\models\\checkpoints\\real\\*.*",
+		"node_setup":{
+			#"ImageSetup" : {
+			#	"batch_size": 1,
+			#	#"height": 704,
+			#	#"height": 768,
+			#	"height": 512,
+			#	"width": 512,
+			#	#"width": 384,
+			#},
+			"KSampler" : {
+				"sampler_name": "dpmpp_sde",
+				"scheduler": "karras",
+				"steps": 25,
+				"cfg": 2.5,
+			},
+		},
+    },
+}
