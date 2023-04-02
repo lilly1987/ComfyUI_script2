@@ -1,5 +1,9 @@
 
 *.pyc
-RunLoop/
+#RunLoop/
 backup/
-#RunLoop/**/*.json
+RunLoop*/**/*.json
+RunLoop/fill/fill-dic.json
+RunLoop/settup.json
+RunLoop/vae/sample.json
+RunLoop/vae/vae-dic.json

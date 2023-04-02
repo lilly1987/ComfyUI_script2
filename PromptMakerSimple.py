@@ -30,7 +30,7 @@ ccolor="bright_yellow"
 
 
 #----------------------------
-class PromptMaker:
+class PromptMakerSimple:
     
     #----------------------------
     def pget(self,name,input):
@@ -134,9 +134,9 @@ class PromptMaker:
         return self.loraNods[name]
         
     def lora_add_after(self):
-        self.pset("KSampler"        , "model", [self.loraModelLast,0])
-        self.pset("positive" , "clip" , [self.loraClipLast ,1])
-        self.pset("negative" , "clip" , [self.loraClipLast ,1])
+        self.pset("SimpleSamplerVAE","model", [self.loraModelLast,0])
+        self.pset("SimpleSamplerVAE","positive" , [self.loraClipLast ,1])
+        self.pset("SimpleSamplerVAE","negative" , [self.loraClipLast ,1])
         
     def lora_set(self,key,value):
 
@@ -196,15 +196,15 @@ class PromptMaker:
 
         #--------------------------------
         if "batch_size" in self.char:
-            self.pset("ImageSetup","batch_size",self.char["batch_size"])
+            self.pset("SimpleSamplerVAE","batch_size",self.char["batch_size"])
         if "height" in self.char:
-            self.pset("ImageSetup","height",self.char["height"])
+            self.pset("SimpleSamplerVAE","height",self.char["height"])
         if "width" in self.char:
-            self.pset("ImageSetup","width",self.char["width"])
+            self.pset("SimpleSamplerVAE","width",self.char["width"])
             
         #--------------------------------
         if "denoise_min" in self.char and "denoise_max" in self.char:
-            self.pset("KSampler","denoise",random.uniform(self.char["denoise_min"],self.char["denoise_max"]))
+            self.pset("SimpleSamplerVAE","denoise",random.uniform(self.char["denoise_min"],self.char["denoise_max"]))
 
         #--------------------------------
         if "lora_name" in self.char:
@@ -289,24 +289,24 @@ class PromptMaker:
         #print("[bright_yellow]positive : [/bright_yellow]", tmp)
         tmp=wildcards.run(tmp)
         print("[bright_yellow]positive : [/bright_yellow]", tmp)
-        self.pset("positive","text", tmp)
+        self.pset("SimpleSamplerVAE","positive", tmp)
         #--------------------------------
         tmp=djoin(dget(self.char,"negative",negative)) 
         tmp=wildcards.run(tmp)
         print("[bright_yellow]negative : [/bright_yellow]", tmp)
-        self.pset("negative","text", tmp)
+        self.pset("SimpleSamplerVAE","negative", tmp)
         #--------------------------------
         nm=dget(self.char,"vae_name",vaenames)
         #print(f"[{ccolor}]nm : [/{ccolor}]",nm ,ckptname)
         nm=vchoice(nm,vaename)
         #print(f"[{ccolor}]nm : [/{ccolor}]",nm)
-        self.pset("VAELoader","vae_name",nm)
+        self.pset("SimpleSamplerVAE","vae_name",nm)
 
         #--------------------------------
         if "steps" in self.char:
-            self.pset("KSampler","steps",25)
+            self.pset("SimpleSamplerVAE","steps",20)
         if "cfg" in self.char:
-            self.pset("KSampler","cfg",7)
+            self.pset("SimpleSamplerVAE","cfg",3)
         #--------------------------------
         print(f"[{ccolor}]self.char after : [/{ccolor}]",self.char)
         return self.prompts
@@ -335,45 +335,19 @@ class PromptMaker:
 
         self.padd(
             
-            "positive",
-            "CLIPTextEncodeWildcards",
-            {
-                "clip" : [self.loraClipLast,1],
-                "text": ""
-            }
-        )
-
-        self.padd(
-            
-            "negative",
-            "CLIPTextEncodeWildcards",
-            {
-                "clip" : [self.loraClipLast,1],
-                "text": ""
-            }
-        )
-
-        self.padd(
-            
-            "ImageSetup",
-            "EmptyLatentImage",
-            {
-                "batch_size": 1,
-                "height": 512,
-                "width": 512
-            }
-        )
-
-        self.padd(
-            
-            "KSampler",
-            "KSampler",
+            "SimpleSamplerVAE",
+            "SimpleSamplerVAE",
             {
                 "model": [self.loraModelLast,0],
-                "positive": [self.nodeNums["positive"],0],
-                "negative": [self.nodeNums["negative"],0],
-                "latent_image": [self.nodeNums["ImageSetup"],0],
-                "sampler_name": "dpmpp_sde",
+                "clip" : [self.loraClipLast,1],
+                "vae_name": vaename,
+                "positive": "",
+                "negative": "",
+                "batch_size": 1,
+                "height": 512,
+                "width": 512,
+                #"sampler_name": "dpmpp_sde",
+                "sampler_name": "dpmpp_2m",
                 "scheduler": "karras",
                 "seed": random.randint(0, 0xffffffffffffffff ),
                 "steps": random.randint(20, 30 ),
@@ -386,29 +360,10 @@ class PromptMaker:
 
         self.padd(
             
-            "VAELoader",
-            "VAELoader",
-            {
-                "vae_name": vaename
-            }
-        )
-
-        self.padd(
-            
-            "VAEDecode",
-            "VAEDecode",
-            {
-                "samples": [self.nodeNums["KSampler"],0],
-                "vae": [self.nodeNums["VAELoader"],0],
-            }
-        )
-
-        self.padd(
-            
             "SaveImage",
             "SaveImageSimple",
             {
-                "images": [self.nodeNums["VAEDecode"],0],
+                "images": [self.nodeNums["SimpleSamplerVAE"],0],
                 "filename_prefix": os.path.splitext(
                     self.pget("CheckpointLoaderSimple","ckpt_name")
                 )[0]
