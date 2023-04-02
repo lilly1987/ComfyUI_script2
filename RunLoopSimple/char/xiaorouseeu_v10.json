@@ -30,12 +30,12 @@
 			#	"width": 512,
 			#	#"width": 384,
 			#},
-			"KSampler" : {
-				"sampler_name": "dpmpp_sde",
-				"scheduler": "karras",
-				"steps": 25,
-				"cfg": 2.5,
-			},
+			#"KSampler" : {
+			#	"sampler_name": "dpmpp_sde",
+			#	"scheduler": "karras",
+			#	"steps": 25,
+			#	"cfg": 2.5,
+			#},
 		},
     },
 }

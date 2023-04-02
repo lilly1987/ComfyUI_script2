@@ -11,12 +11,12 @@
         },
 		#"ckpt_path" : ["..\\..\\models\\checkpoints\\2.5d\\*.safetensors","..\\..\\models\\checkpoints\\real\\*.safetensors"]
 		"node_setup":{
-			"KSampler" : {
-				"sampler_name": "dpmpp_sde",
-				"scheduler": "karras",
-				"steps": 25,
-				"cfg": 2.5,
-			},
+			#"SimpleSamplerVAE" : {
+			#	"sampler_name": "dpmpp_sde",
+			#	"scheduler": "karras",
+			#	"steps": 25,
+			#	"cfg": 2.5,
+			#},
 		},
     },
 }
