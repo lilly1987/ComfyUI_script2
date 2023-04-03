@@ -229,24 +229,36 @@ class PromptMakerSimple:
         if len(keys)>0:
             random.shuffle(keys)
             for key in keys:
-                self.lora_add_set(key,inputs[key])
+                print(f"[{ccolor}]keys\[key] : [/{ccolor}]",inputs[key])
+                if "per this" in inputs[key] : 
+                    r=random.random()
+                    if r>=inputs[key]["per this"]: 
+                        continue
+                self.lora_add_set(wildcards.run(key),inputs[key])
 
         #--------------------------------
         if "lora_unique" in self.char:
             lora_unique_sets=self.char["lora_unique"]
-            for lora_unique_set in lora_unique_sets:
-                lora_unique_dics=lora_unique_sets[lora_unique_set]
-                if "per this" in lora_unique_dics : 
-                #    print(f"[{ccolor}]'{loraname}' per this : [/{ccolor}]",tmp["per this"])
-                    r=random.random()
-                    if r>=lora_unique_dics["per this"]: 
-                        print(f"[{ccolor}]'{lora_unique_set}' skip : [/{ccolor}]",r)
-                        continue
-                    else:
-                        print(f"[{ccolor}]'{lora_unique_set}' run : [/{ccolor}]",r)
-                        del lora_unique_dics["per this"]
-                key=random.choice(list(lora_unique_dics.keys()))
-                self.lora_add_set(key,lora_unique_dics[key])
+            ck=True
+            if "per this" in lora_unique_sets : 
+                r=random.random()
+                if r>=lora_unique_sets["per this"]: 
+                    print(f"[{ccolor}]'{lora_unique_set}' skip : [/{ccolor}]",r)
+                    ck=False
+            if ck:
+                for lora_unique_set in lora_unique_sets:
+                    lora_unique_dics=lora_unique_sets[lora_unique_set]
+                    if "per this" in lora_unique_dics : 
+                    #    print(f"[{ccolor}]'{loraname}' per this : [/{ccolor}]",tmp["per this"])
+                        r=random.random()
+                        if r>=lora_unique_dics["per this"]: 
+                            print(f"[{ccolor}]'{lora_unique_set}' skip : [/{ccolor}]",r)
+                            continue
+                        else:
+                            print(f"[{ccolor}]'{lora_unique_set}' run : [/{ccolor}]",r)
+                            del lora_unique_dics["per this"]
+                    key=random.choice(list(lora_unique_dics.keys()))
+                    self.lora_add_set(key,lora_unique_dics[key])
                 
         #--------------------------------
         if "node_setup" in self.char:
@@ -303,10 +315,20 @@ class PromptMakerSimple:
         self.pset("SimpleSamplerVAE","vae_name",nm)
 
         #--------------------------------
-        if "steps" in self.char:
-            self.pset("SimpleSamplerVAE","steps",20)
+        cfg=3
         if "cfg" in self.char:
-            self.pset("SimpleSamplerVAE","cfg",3)
+            cfg=self.char["cfg"]
+        elif "cfg min" in self.char and "cfg max" in self.char:
+            cfg=random.randint( int(self.char["cfg min"]*2) , int(self.char["cfg max"]*2) ) / 2
+        self.pset("SimpleSamplerVAE","cfg",cfg)
+            
+        steps=20
+        if "steps" in self.char:
+            steps=self.char["steps"]
+        elif "steps min" in self.char and "steps max" in self.char:
+            steps=random.randint( int(self.char["steps min"]) , int(self.char["steps max"]) ) 
+        self.pset("SimpleSamplerVAE","steps",steps)
+        
         #--------------------------------
         print(f"[{ccolor}]self.char after : [/{ccolor}]",self.char)
         return self.prompts
@@ -332,7 +354,14 @@ class PromptMakerSimple:
 
         self.loraModelLast=self.nodeNums["CheckpointLoaderSimple"]
         self.loraClipLast =self.nodeNums["CheckpointLoaderSimple"]
+        
 
+        #else:
+        cfg=random.randint( int(2*2) , int(4*2) ) / 2,
+                    
+        #else:
+        steps=random.randint(15, 30 ),
+            
         self.padd(
             
             "SimpleSamplerVAE",
@@ -350,9 +379,9 @@ class PromptMakerSimple:
                 "sampler_name": "dpmpp_2m",
                 "scheduler": "karras",
                 "seed": random.randint(0, 0xffffffffffffffff ),
-                "steps": random.randint(20, 30 ),
-                "cfg": 7,
-                #"cfg": random.randint( int(4*2) , int(8*2) ) / 2,
+                "steps": steps,
+                #"cfg": 7,
+                "cfg": cfg,
                 "denoise": 1 ,
                 #"denoise": random.uniform(0.75,1.0) ,
             }

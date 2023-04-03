@@ -1,12 +1,11 @@
 {
     "Tomoyo": {
         "positive": {
-            "char" : "(daidouji_tomoyo:1.1), (tomoyo:1.1), black long hair, blunt bangs, {cardcaptor sakura \(style\)|},",
-			"breasts": "flat chest,",
+            #"char" : "(daidouji_tomoyo:1.1), (tomoyo:1.1), black long hair, blunt bangs, {cardcaptor sakura \(style\)|},",
             #"dress": "{__SaegusaMayumidress__|__character_dress__|__dress_my__|},",
         },
 		"lora_set": {
-			"{daidoujiTomoyo_v01|daidoujiTomoyo_v01|tomoyo_V1Epoch6|cardcaptorSakura_sakuraEpoch6|cardcaptorSakura_sakuraEpoch6|cardcaptorSakura_sakuraEpoch6|cardcaptorSakura_sakuraEpoch6|sakuraKinomoto_sakuraV1Epoch6}" : {
+			"ryoukoMendouUrusei_ryoukoMendou" : {
 				"strength_model": 0.500,
 				"strength_clip" : 0.500,
 				#"strength_model_min": 0.25,

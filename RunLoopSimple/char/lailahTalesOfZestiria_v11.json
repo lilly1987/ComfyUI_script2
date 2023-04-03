@@ -1,0 +1,50 @@
+{
+    "Tomoyo": {
+        "positive": {
+            "girl" : "1girl,",
+            "char" : "lailah \(tales\), 1girl,",
+			"breasts": "{flat|small} chest,",
+			"hair" : "(white hair:1.4), long hair, ponytail, bangs, blunt bangs,",
+            "body": "narrow waist, slim waist,",
+            "dress": "long red dress, hairband,",
+        },
+		"negative" : {
+			"no" : "text, watermark, bad quallity, lowres, bad anatomy, bad hands, head out of frame, ((2girls)), __no2d__,"
+		},
+		"lora_set": {
+			"lailahTalesOfZestiria_v11" : {
+				"strength_model": 1.0000,
+				"strength_clip" : 1.0000,
+				#"strength_model": 0.7500,
+				#"strength_clip" : 0.7500,
+				#"strength_model_min": 0.875,
+				#"strength_model_max": 1.00,
+				#"strength_clip_min" : 0.875,
+				#"strength_clip_max" : 1.00,
+				#"char_lora_set" : True,
+			},			          
+			#"monstersexactlora79_v10" : {     
+			#	"positive": "(1boy, monster sex, huge penis, pussy, spread legs, large insertion, monster, stomach bulge:1.3),",
+			#	"strength_model_min": 0.0,
+			#	"strength_model_max": 0.2500,
+			#	#"strength_model_max": 1.00,
+			#	"strength_clip_min" : 0.250,
+			#	"strength_clip_max" : 0.500,
+			#	#"strength_clip_max" : 1.00,
+			#},
+			"{gujianshaonvStyle_v10|AnimeStyleLoraWith_v10ForAOM3A1}" : {
+				"per this" : 0.000,
+				#"strength_model": 0.7500,
+				#"strength_clip" : 0.7500,
+				"strength_model_min": 0.5,
+				"strength_model_max": 1.00,
+				"strength_clip_min" : 0.5,
+				"strength_clip_max" : 1.00,
+				#"char_lora_set" : True,
+			},			          
+		},
+		"ckpt_name" : "elysiumAnime_v2"
+		#"ckpt_name" : "puresernemix_v10"
+		#"ckpt_name" : "cornflowerStylizedAnime_v9FP32-fp16"
+    },
+}

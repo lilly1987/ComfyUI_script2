@@ -8,53 +8,86 @@
     "positive": {
         "quality": "__quality1__,",
         #"quality": "{__quality__|__quality_my__|__quality1__},",
-        "breasts": "(__breasts__),",
+		"girl" : "1girl,",
+        "breasts": "(__breasts__|flat chest|),",
         #"dress": "{long |}dress, {__character_dress__|__dress_my__|__dress__|__dress_code__|__dress1__},",
         "dress": "{long |}dress,",
         "off shoulder": "(__shoulder__),",
-        "skirt": "{__skirt__,|}",
-        "sleeve": "{__sleeve__,|}",
+        #"skirt": "{__skirt__,|}",
+        #"sleeve": "{__sleeve__,|}",
         "heel": "{__heel__,|}",
         #"acc": "{__acc_my__,|}",
-        "nsfw": "nsfw, (nipples), (breasts exposure), (nipple exposure), (breastsout), ",
-        "uncensored": "uncensored, ",
+        "nsfw": "nsfw, {(nipples),|} {(breasts exposure),|} (nipple exposure), {(breastsout),|} ",
+        "uncensored": "{uncensored,|} ",
         #"nsfw": "nsfw, (breastsout, breasts exposure, nipple exposure,{exposure,|}:1.2), {(sex:1.2),|}",
 		#"vibrator":"{(vibrator in pussy:__1.00_1.49__),(pussy exposure:__1.00_1.49__),|}",
-		#"sex":"(sex:__1.00_1.49__),(1girl and 1boy:__1.00_1.49__),(penis:__1.00_1.49__),(pussy:__1.00_1.49__),",
+		"sex":"{(sex:__1.00_1.49__),(1girl and 1boy:__1.00_1.49__),(penis:__1.00_1.49__),(pussy:__1.00_1.49__),|}",
 		#"vibrator":"(vibrator in pussy:__1.00_1.49__),(pussy exposure:__1.00_1.49__),",
-		#"pregnant":"{(pregnant:1.2),||}",
+		#"pregnant":"{(pregnant:1.2),||||}",
         "hair": "hair,",
-        "body": "{slender, nature, curvy|__body__},",
+        "body": "{slender, nature, curvy|__body__|},",
         #"ear": "{|__ear__},",
-        "focus": "full body,",
+        "focus": "{full body,|}",
         #"pose": "{standing|sitting},",
         #"pose": "standing,",
-        "background": "black background,",
+        #"background": "black background,",
 	},
     "negative": {
-        "no": "__no2d__,",
+        #"no": "__no2d__,",
         #"no": "__no3d__,",
         "nude": "nude,",
         "only body": "only body,",
         "EasyNegative": "embedding:EasyNegative.safetensors,",
+        "bad_prompt": "embedding:bad_prompt.pt",
     },
 	"lora_unique" : {
-		"sex": {
-			"per this" : 0.5000,
-			"amazonPositionSexAct_v10" : {    
-				"positive": "pov, pussy, sex,",
+		#"per this" : 0.0000,
+		"pose": {
+			"per this" : 0.0000,
+			"poleDancing_v10" : {    
+				"positive": "(pole_dancing, split leg, one leg up:1.3),",
 			},
+		},
+		"monstersex" : {					
+			"per this" : 01.1250000,
+			#"monstersexactlora79_v10" : {     
+			#	"positive": "(monster sex, huge penis, pussy, spread legs, large insertion, monster, stomach bulge:1.3),",
+			#},
+			"hilichurlGenshinImpact_v10" : {     
+				"positive": "hilichurl,held up,nipples,pussy, pussy juice, spread legs,  huge penis, large insertion, monster sex, uncensored, monster,",
+			},
+		},
+		"Cowgirl" : {					
+			"per this" : 0.0000,
 			"conceptCowgirl_v10" : {     
-				"positive": "(__Cowgirl1__:1.3),",
+				"positive": "(__Cowgirl1__, sex:1.3),",
 			},
+			"povBigBlackCockAnal_v01Epoch90" : {     
+				"positive": "(a woman is riding a big black cock in anal, sex:1.3),",
+			},
+			"povMissionaryVaginal_v1" : {     
+				"positive": "(sex:1.3),",
+			},
+			"amazonPositionSexAct_v10" : {    
+				"positive": "(pov, pussy, sex:1.3),",
+			},
+			"ridingABigCockPOV_v27Epoch50" : {    
+				"positive": "(a woman is riding a big cock, pov, pussy, sex:1.3), ",
+			},
+			#"monstersexactlora79_v10" : {     
+			#	"positive": "(monster sex, huge penis, pussy, spread legs, large insertion, monster, stomach bulge:1.3),",
+			#},
+			"ridingDildoSexActLora_v11" : {    
+				"positive": "(Riding Dildo, Dildo, large insertion:1.3),",
+			},
+		},
+		"sex": {
+			"per this" : 0.0000,
 			"conceptFaketailAnal_v10" : {     
 				"positive": "faketail,",
 			},
 			"fromBelowPOV_v1" : {    
 				"positive": "from_below,  foreshortening ,",
-			},
-			"monstersexactlora79_v10" : {     
-				"positive": "(monster sex, huge penis, pussy, spread legs, large insertion, monster, stomach bulge:1.3),",
 			},
 			"lrChestStand_lrChestStand089" : {    
 				"positive": "chest stand, top-down_bottom-up,",
@@ -62,14 +95,8 @@
 			"koonago_V1" : {     
 				"positive": "koonago,minigirl,1boy, pov, penis hug, penis,",
 			},		              
-			"povBigBlackCockAnal_v01Epoch90" : {    
-				"positive": "a woman is riding a big black cock in anal,",
-			},
 			"povMissionaryVaginal_v1" : {     
 				"positive": "sex,",
-			},
-			"ridingDildoSexActLora_v11" : {    
-				"positive": "(Riding Dildo, Dildo, large insertion:1.3),",
 			},
 			"spooningPositionLora_v10" : {    
 				"positive": "spooning, sex, on side, spread legs, leg lift,",
@@ -82,7 +109,7 @@
 			},
 		},
 		"yuri": {
-			"per this" : 0.1000,
+			"per this" : 0.10000,
 			"yuriKiss_v01Beta" : {     
 				"positive": "(2girls:1.3), (yuri:1.3), (kiss:1.3),(kissing:1.3), (tongue kiss:1.3), looking at each other, hug, tongue, mouth open,",
 			},
@@ -97,35 +124,28 @@
 			},
 		},
 		"bondage": {
-			"per this" : 0.00,
+			"per this" : 0.10000,
 			"artistYimao_v10" : {    
 				"positive": "lewd, {gag,|} {bondage,|} {body-stocking,|} {piercing,|} {orgasm,|}",
 			},
 			"openGagMouth_v20" : {    
 				"positive": "circle gag mouth,",
 			},
-		},
-		"Cowgirl" : {		
-			"per this" : 0.00,
-			"conceptCowgirl_v10" : {     
-				"positive": "__Cowgirl1__, sex,",
-			},
-			"povBigBlackCockAnal_v01Epoch90" : {     
-				"positive": "a woman is riding a big black cock in anal, sex,",
-			},
-			"povMissionaryVaginal_v1" : {     
-				"positive": "sex,",
+			"pillory_v10" : {    
+				"positive": "(pillory, flail:1.3),",
 			},
 		},
+
 		"hunged_girl": {
 			#"per this" : 01.00,
-			"per this" : 0.500,
+			"per this" : 01.500,
 			"hunged_girl" : {     
+				#"positive": "(__hunged_girl1__:1.3),",
 				"positive": "__hunged_girl1__,",
 			},
 		},
 		"dress" : {
-			"per this" : 0.100,
+			"per this" : 0.000,
 			"thaiUniversity_v10" : {    
 				"positive": "white shirt short sleeve, {black pencil short skirt|black tight skirt},",
 			},
@@ -137,7 +157,7 @@
 			},
 		},
 		"Style": {
-			"per this" : 0.100,
+			"per this" : 0.1000,
 			"nixeuStyleLora_100" : {     
 				"positive": "nixeu,",
 			},
@@ -170,47 +190,57 @@
 	#		"per this" : 1.0
 	#	},
 	#},
+	"cfg min" : 2,
+	"cfg max" : 4,
+	"steps min" : 15,
+	"steps max" : 30,
 	"node_setup":{
 		"SimpleSamplerVAE" : {
 			"sampler_name": "dpmpp_2m",
 			#"sampler_name": "dpmpp_sde",
 			"scheduler": "karras",
-			"steps": 20,
-			"cfg": 3.0,
+			#"steps": 20,
+			#"cfg": 3.0,
 			"batch_size": 1,
-			"height": 768,
-			"width": 384,
+			"height": 896,
+			"width": 448,
 		},
 		#"CheckpointLoaderSimple" : {
 		#	"ckpt_name": "3moonDollAnime_3moonDollAnime-fp16",
 		#},
 	},
 	"char_lora_set" :{
-		"strength_model_min": 0.25,
-		"strength_model_max": 0.75,
-		#"strength_model_max": 1.00,
-		"strength_clip_min" : 0.25,
-		"strength_clip_max" : 0.750,
-		#"strength_clip_max" : 1.00,
+		"strength_model_min": 0.0,
+		#"strength_model_min": 0.25,
+		#"strength_model_max": 0.75,
+		"strength_model_max": 1.00,
+		"strength_clip_min" : 0.0,
+		#"strength_clip_min" : 0.25,
+		#"strength_clip_max" : 0.750,
+		"strength_clip_max" : 1.00,
 		#"strength_model": 0.50,
 		#"strength_model": 1.00,
 		#"strength_clip" : 1.00,
 	},
-	"strength_model_min": 0.00,
+    #"strength_model": 0.00,
+    #"strength_clip" : 0.500,
+	"strength_model_min": 0.0,
+	#"strength_model_min": 0.12500,
 	#"strength_model_min": 0.25,
 	#"strength_model_max": 0.5,
 	#"strength_model_max": 0.75,
 	"strength_model_max": 1.00,
-	"strength_clip_min": 0.0,
+	#"strength_clip_min": 0.1250,
+	"strength_clip_min" : 0.0,
+	#"strength_clip_min" : 0.5,
+	#"strength_clip_min" : 0.75,
 	#"strength_clip_min" : 0.875,
 	#"strength_clip_min" : 0.9375,
-	#"strength_clip_max": 0.5,
+	#"strength_clip_max": 0.25,
 	#"strength_clip_max": 0.75,
 	"strength_clip_max" : 1.00,
 	#"strength_clip_min" : 1.0,
 	#"strength_clip_max" : 1.2500,
-    #"strength_model": 0.500,
-    #"strength_clip" : 1.00,
     "positiveRandom" : True,
 	
 }
